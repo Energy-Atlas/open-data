@@ -1,0 +1,3 @@
+id,provider,dataset,version,access_route,native_product_id,spatial_kind,temporal_kind,footprint_west,footprint_south,footprint_east,footprint_north,longitude_convention,source_variables,adapter_variables,adapter_supported,native_resolution_minutes,delivered_resolution_minutes,access_requirements,citation,license_effective,license_original,license_history,evidence_ids
+oedi:rcp45,oedi,WRF/CCSM4 EPW trajectories,,https,,station,future_window,,,,,,"[""epw_hourly_trajectory""]","[""epw_hourly_trajectory""]",true,,,[],,,,,"[""oedi-sites"",""oedi-45-revised-directory""]"
+oedi:rcp85,oedi,WRF/CCSM4 EPW trajectories,,https,,station,future_window,,,,,,"[""epw_hourly_trajectory""]","[""epw_hourly_trajectory""]",true,,,[],,,,,"[""oedi-sites"",""oedi-85-revised-directory""]"

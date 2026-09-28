@@ -5,3 +5,6 @@
 *.gz binary
 *.zip binary
 *.sqlite3 binary
+# Checksummed dataset files are stored byte for byte.
+datasets/*/data/** -text
+datasets/*/datapackage.json -text

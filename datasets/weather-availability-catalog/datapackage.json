@@ -1,0 +1,3560 @@
+{
+  "profile": "tabular-data-package",
+  "name": "weather-availability-catalog",
+  "version": "2026.09.28",
+  "title": "Weather availability catalog",
+  "description": "Which weather products (station records, typical-year files, reanalysis, climate projections) are available where and for which years, with the evidence each statement rests on. Metadata only: no weather data. Exported from the openepw availability catalog.",
+  "homepage": "https://github.com/Energy-Atlas/open-data/tree/main/datasets/weather-availability-catalog",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "title": "Creative Commons Attribution 4.0 (CMIP6 models so licensed, ERA5, OEDI, Open-Meteo)",
+      "path": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "name": "CC0-1.0",
+      "title": "CC0 1.0 (CMIP6 models so licensed)",
+      "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "name": "other-attribution",
+      "title": "Per-source terms; see README.md (NOAA, NSRDB, PVGIS, OneBuilding)"
+    }
+  ],
+  "sources": [
+    {
+      "title": "NOAA NCEI Integrated Surface Database: station history and inventory",
+      "path": "https://www.ncei.noaa.gov/pub/data/noaa/"
+    },
+    {
+      "title": "OneBuilding climate.onebuilding.org published EPW catalogs",
+      "path": "https://climate.onebuilding.org/"
+    },
+    {
+      "title": "NLR National Solar Radiation Database",
+      "path": "https://developer.nlr.gov/docs/solar/nsrdb/"
+    },
+    {
+      "title": "Copernicus Climate Data Store: ERA5 and ERA5-Land",
+      "path": "https://cds.climate.copernicus.eu/"
+    },
+    {
+      "title": "Open-Meteo historical weather API",
+      "path": "https://open-meteo.com/en/docs/historical-weather-api"
+    },
+    {
+      "title": "PVGIS © European Communities, 2001-2026",
+      "path": "https://re.jrc.ec.europa.eu/pvg_tools/en/"
+    },
+    {
+      "title": "Pangeo CMIP6 catalog and WCRP CMIP6 source licences",
+      "path": "https://storage.googleapis.com/cmip6/pangeo-cmip6.csv"
+    },
+    {
+      "title": "OEDI 5974: Dynamically downscaled hourly future weather data (Argonne), doi:10.25984/2202668",
+      "path": "https://data.openei.org/submissions/5974"
+    }
+  ],
+  "catalog_schema_version": "1",
+  "resources": [
+    {
+      "name": "data-sources",
+      "path": "data/sources.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 9647,
+      "hash": "sha256:57b5ca3ac8966c3f304780eb47f1918218e559b25d19b9f46020ad22d9aa7d84",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Evidence identifier referenced by other tables"
+          },
+          {
+            "name": "source_url",
+            "type": "string",
+            "description": "Where the evidence was read"
+          },
+          {
+            "name": "sha256",
+            "type": "string",
+            "description": "SHA-256 of the retrieved source"
+          },
+          {
+            "name": "retrieved_at",
+            "type": "datetime",
+            "description": "When the source was downloaded"
+          },
+          {
+            "name": "checked_at",
+            "type": "datetime",
+            "description": "When the source was last checked"
+          },
+          {
+            "name": "basis",
+            "type": "string",
+            "description": "documentation, inventory, targeted_probe or review"
+          },
+          {
+            "name": "last_modified",
+            "type": "string",
+            "description": "HTTP Last-Modified of the source"
+          },
+          {
+            "name": "etag",
+            "type": "string",
+            "description": "HTTP ETag of the source"
+          },
+          {
+            "name": "published_at",
+            "type": "date",
+            "description": "Publication date stated by the source",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "terms",
+            "type": "string",
+            "description": "Terms or licence stated by the source"
+          },
+          {
+            "name": "attribution",
+            "type": "string",
+            "description": "Attribution the source asks for"
+          },
+          {
+            "name": "scope",
+            "type": "string",
+            "description": "What part of the source the evidence covers"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "data-reviews",
+      "path": "data/reviews.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 78583,
+      "hash": "sha256:569366e49df1e4cfab62c3a842cca5352a40e13409d9bb2fbbf5bbfc483dc9fd",
+      "schema": {
+        "fields": [
+          {
+            "name": "catalog_url",
+            "type": "string",
+            "description": "Reviewed OneBuilding file"
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "description": "Product in onebuilding/products.csv"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "description": "Review outcome"
+          },
+          {
+            "name": "rationale",
+            "type": "string",
+            "description": "Why"
+          },
+          {
+            "name": "accepted_on",
+            "type": "date",
+            "description": "Date the owner accepted it",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          },
+          {
+            "name": "source_checksums",
+            "type": "object",
+            "description": "SHA-256 of each evidence source at review"
+          },
+          {
+            "name": "alternate_url",
+            "type": "string",
+            "description": "Equivalent file elsewhere"
+          },
+          {
+            "name": "coordinate_authority",
+            "type": "string",
+            "description": "Where the coordinates come from"
+          },
+          {
+            "name": "original_position_status",
+            "type": "string",
+            "description": "Position status before review"
+          },
+          {
+            "name": "original_match_reason",
+            "type": "string",
+            "description": "Match reason before review"
+          },
+          {
+            "name": "epw_coordinates_verified",
+            "type": "boolean",
+            "description": "EPW header coordinates checked"
+          },
+          {
+            "name": "weather_equivalence_verified",
+            "type": "boolean",
+            "description": "Weather data compared"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "catalog_url"
+        ]
+      }
+    },
+    {
+      "name": "data-cds-products",
+      "path": "data/cds/products.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 1170,
+      "hash": "sha256:d845e51b68bfa8acee327c7c6d57831c4fcccc907ccf2b08e44639ec51349a6f",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Product identifier"
+          },
+          {
+            "name": "provider",
+            "type": "string",
+            "description": "Data provider"
+          },
+          {
+            "name": "dataset",
+            "type": "string",
+            "description": "Provider dataset name"
+          },
+          {
+            "name": "version",
+            "type": "string",
+            "description": "Dataset version"
+          },
+          {
+            "name": "access_route",
+            "type": "string",
+            "description": "How the data is fetched"
+          },
+          {
+            "name": "native_product_id",
+            "type": "string",
+            "description": "Provider's own identifier or file URL"
+          },
+          {
+            "name": "spatial_kind",
+            "type": "string",
+            "description": "point, station, grid, area or unknown"
+          },
+          {
+            "name": "temporal_kind",
+            "type": "string",
+            "description": "actual, tmy_reference or future_window"
+          },
+          {
+            "name": "footprint_west",
+            "type": "number",
+            "description": "Coverage bounding box, west longitude"
+          },
+          {
+            "name": "footprint_south",
+            "type": "number",
+            "description": "Coverage bounding box, south latitude"
+          },
+          {
+            "name": "footprint_east",
+            "type": "number",
+            "description": "Coverage bounding box, east longitude"
+          },
+          {
+            "name": "footprint_north",
+            "type": "number",
+            "description": "Coverage bounding box, north latitude"
+          },
+          {
+            "name": "longitude_convention",
+            "type": "string",
+            "description": "-180_180 or 0_360"
+          },
+          {
+            "name": "source_variables",
+            "type": "array",
+            "description": "Variables the source publishes"
+          },
+          {
+            "name": "adapter_variables",
+            "type": "array",
+            "description": "Variables openepw reads from it"
+          },
+          {
+            "name": "adapter_supported",
+            "type": "boolean",
+            "description": "Whether openepw can download it"
+          },
+          {
+            "name": "native_resolution_minutes",
+            "type": "integer",
+            "description": "Native time step"
+          },
+          {
+            "name": "delivered_resolution_minutes",
+            "type": "integer",
+            "description": "Time step as delivered"
+          },
+          {
+            "name": "access_requirements",
+            "type": "array",
+            "description": "Keys or terms needed to download"
+          },
+          {
+            "name": "citation",
+            "type": "string",
+            "description": "How to cite the product"
+          },
+          {
+            "name": "license_effective",
+            "type": "string",
+            "description": "Licence in force"
+          },
+          {
+            "name": "license_original",
+            "type": "string",
+            "description": "Licence at first publication"
+          },
+          {
+            "name": "license_history",
+            "type": "string",
+            "description": "Licence changes"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "data-cds-sites",
+      "path": "data/cds/sites.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 144,
+      "hash": "sha256:1673400b95cdb5c2295d3cd8d94ec365de92d948c6889c52bf90473f86331d4f",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Site identifier"
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "description": "Product in products.csv"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "description": "Published station name"
+          },
+          {
+            "name": "lat",
+            "type": "number",
+            "description": "Latitude, degrees north"
+          },
+          {
+            "name": "lon",
+            "type": "number",
+            "description": "Longitude, degrees east"
+          },
+          {
+            "name": "elevation_m",
+            "type": "number",
+            "description": "Elevation, metres"
+          },
+          {
+            "name": "position_status",
+            "type": "string",
+            "description": "How the position is known"
+          },
+          {
+            "name": "station_identity_status",
+            "type": "string",
+            "description": "How the station identity is known"
+          },
+          {
+            "name": "candidate_station_ids",
+            "type": "array",
+            "description": "Station identifiers that may match"
+          },
+          {
+            "name": "operating_start",
+            "type": "date",
+            "description": "First day of operation",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "operating_end",
+            "type": "date",
+            "description": "Last day of operation",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "product_id",
+            "reference": {
+              "resource": "data-cds-products",
+              "fields": "id"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data-cds-entries",
+      "path": "data/cds/entries.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 574,
+      "hash": "sha256:fee621b40e6670ead4d6ccdab32847c79709aaf1c4deff71367b8ee79c637435",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Entry identifier"
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "description": "Product in products.csv"
+          },
+          {
+            "name": "site_id",
+            "type": "string",
+            "description": "Site in sites.csv; empty for gridded products"
+          },
+          {
+            "name": "scope_kind",
+            "type": "string",
+            "description": "actual, tmy_reference or future_window"
+          },
+          {
+            "name": "years",
+            "type": "array",
+            "description": "actual: years with data"
+          },
+          {
+            "name": "operating_start",
+            "type": "date",
+            "description": "actual: first day available",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "operating_end",
+            "type": "date",
+            "description": "actual: last day available",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "start_year",
+            "type": "integer",
+            "description": "tmy_reference/future_window: first year of the period"
+          },
+          {
+            "name": "end_year",
+            "type": "integer",
+            "description": "tmy_reference/future_window: last year of the period"
+          },
+          {
+            "name": "product_label",
+            "type": "string",
+            "description": "tmy_reference: published product label"
+          },
+          {
+            "name": "selected_month_years",
+            "type": "object",
+            "description": "tmy_reference: year chosen for each month"
+          },
+          {
+            "name": "scenario",
+            "type": "string",
+            "description": "future_window: emissions scenario"
+          },
+          {
+            "name": "model",
+            "type": "string",
+            "description": "future_window: climate model"
+          },
+          {
+            "name": "member",
+            "type": "string",
+            "description": "future_window: ensemble member"
+          },
+          {
+            "name": "grid",
+            "type": "string",
+            "description": "future_window: model grid"
+          },
+          {
+            "name": "listed_years",
+            "type": "array",
+            "description": "future_window: years listed by the source"
+          },
+          {
+            "name": "variables",
+            "type": "array",
+            "description": "Variables available"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          },
+          {
+            "name": "evidence_basis",
+            "type": "string",
+            "description": "documentation, inventory or targeted_probe"
+          },
+          {
+            "name": "exclusions",
+            "type": "array",
+            "description": "Known exclusions"
+          },
+          {
+            "name": "weather_complete",
+            "type": "boolean",
+            "description": "Whether all EPW weather fields are present"
+          },
+          {
+            "name": "probe_lat",
+            "type": "number",
+            "description": "targeted_probe: latitude probed"
+          },
+          {
+            "name": "probe_lon",
+            "type": "number",
+            "description": "targeted_probe: longitude probed"
+          },
+          {
+            "name": "probe_id",
+            "type": "string",
+            "description": "targeted_probe: location identifier"
+          },
+          {
+            "name": "probe_name",
+            "type": "string",
+            "description": "targeted_probe: location name"
+          },
+          {
+            "name": "probe_elevation",
+            "type": "number",
+            "description": "targeted_probe: elevation, metres"
+          },
+          {
+            "name": "probe_standard_offset_minutes",
+            "type": "integer",
+            "description": "targeted_probe: standard time offset"
+          },
+          {
+            "name": "source_etag",
+            "type": "string",
+            "description": "ETag of the source file"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "product_id",
+            "reference": {
+              "resource": "data-cds-products",
+              "fields": "id"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data-cmip6-products",
+      "path": "data/cmip6/products.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 261078,
+      "hash": "sha256:5f3c4e105b63a22da6415286f628dcab146537b52da293eeaffd70abdd8a95a3",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Product identifier"
+          },
+          {
+            "name": "provider",
+            "type": "string",
+            "description": "Data provider"
+          },
+          {
+            "name": "dataset",
+            "type": "string",
+            "description": "Provider dataset name"
+          },
+          {
+            "name": "version",
+            "type": "string",
+            "description": "Dataset version"
+          },
+          {
+            "name": "access_route",
+            "type": "string",
+            "description": "How the data is fetched"
+          },
+          {
+            "name": "native_product_id",
+            "type": "string",
+            "description": "Provider's own identifier or file URL"
+          },
+          {
+            "name": "spatial_kind",
+            "type": "string",
+            "description": "point, station, grid, area or unknown"
+          },
+          {
+            "name": "temporal_kind",
+            "type": "string",
+            "description": "actual, tmy_reference or future_window"
+          },
+          {
+            "name": "footprint_west",
+            "type": "number",
+            "description": "Coverage bounding box, west longitude"
+          },
+          {
+            "name": "footprint_south",
+            "type": "number",
+            "description": "Coverage bounding box, south latitude"
+          },
+          {
+            "name": "footprint_east",
+            "type": "number",
+            "description": "Coverage bounding box, east longitude"
+          },
+          {
+            "name": "footprint_north",
+            "type": "number",
+            "description": "Coverage bounding box, north latitude"
+          },
+          {
+            "name": "longitude_convention",
+            "type": "string",
+            "description": "-180_180 or 0_360"
+          },
+          {
+            "name": "source_variables",
+            "type": "array",
+            "description": "Variables the source publishes"
+          },
+          {
+            "name": "adapter_variables",
+            "type": "array",
+            "description": "Variables openepw reads from it"
+          },
+          {
+            "name": "adapter_supported",
+            "type": "boolean",
+            "description": "Whether openepw can download it"
+          },
+          {
+            "name": "native_resolution_minutes",
+            "type": "integer",
+            "description": "Native time step"
+          },
+          {
+            "name": "delivered_resolution_minutes",
+            "type": "integer",
+            "description": "Time step as delivered"
+          },
+          {
+            "name": "access_requirements",
+            "type": "array",
+            "description": "Keys or terms needed to download"
+          },
+          {
+            "name": "citation",
+            "type": "string",
+            "description": "How to cite the product"
+          },
+          {
+            "name": "license_effective",
+            "type": "string",
+            "description": "Licence in force"
+          },
+          {
+            "name": "license_original",
+            "type": "string",
+            "description": "Licence at first publication"
+          },
+          {
+            "name": "license_history",
+            "type": "string",
+            "description": "Licence changes"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "data-cmip6-sites",
+      "path": "data/cmip6/sites.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 144,
+      "hash": "sha256:1673400b95cdb5c2295d3cd8d94ec365de92d948c6889c52bf90473f86331d4f",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Site identifier"
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "description": "Product in products.csv"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "description": "Published station name"
+          },
+          {
+            "name": "lat",
+            "type": "number",
+            "description": "Latitude, degrees north"
+          },
+          {
+            "name": "lon",
+            "type": "number",
+            "description": "Longitude, degrees east"
+          },
+          {
+            "name": "elevation_m",
+            "type": "number",
+            "description": "Elevation, metres"
+          },
+          {
+            "name": "position_status",
+            "type": "string",
+            "description": "How the position is known"
+          },
+          {
+            "name": "station_identity_status",
+            "type": "string",
+            "description": "How the station identity is known"
+          },
+          {
+            "name": "candidate_station_ids",
+            "type": "array",
+            "description": "Station identifiers that may match"
+          },
+          {
+            "name": "operating_start",
+            "type": "date",
+            "description": "First day of operation",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "operating_end",
+            "type": "date",
+            "description": "Last day of operation",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "product_id",
+            "reference": {
+              "resource": "data-cmip6-products",
+              "fields": "id"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data-cmip6-entries",
+      "path": "data/cmip6/entries.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 158467,
+      "hash": "sha256:7ffadb12e324f8afd1df7b1eb5b5e4ef99fafb1226ae30bcb72008be4bdce834",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Entry identifier"
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "description": "Product in products.csv"
+          },
+          {
+            "name": "site_id",
+            "type": "string",
+            "description": "Site in sites.csv; empty for gridded products"
+          },
+          {
+            "name": "scope_kind",
+            "type": "string",
+            "description": "actual, tmy_reference or future_window"
+          },
+          {
+            "name": "years",
+            "type": "array",
+            "description": "actual: years with data"
+          },
+          {
+            "name": "operating_start",
+            "type": "date",
+            "description": "actual: first day available",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "operating_end",
+            "type": "date",
+            "description": "actual: last day available",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "start_year",
+            "type": "integer",
+            "description": "tmy_reference/future_window: first year of the period"
+          },
+          {
+            "name": "end_year",
+            "type": "integer",
+            "description": "tmy_reference/future_window: last year of the period"
+          },
+          {
+            "name": "product_label",
+            "type": "string",
+            "description": "tmy_reference: published product label"
+          },
+          {
+            "name": "selected_month_years",
+            "type": "object",
+            "description": "tmy_reference: year chosen for each month"
+          },
+          {
+            "name": "scenario",
+            "type": "string",
+            "description": "future_window: emissions scenario"
+          },
+          {
+            "name": "model",
+            "type": "string",
+            "description": "future_window: climate model"
+          },
+          {
+            "name": "member",
+            "type": "string",
+            "description": "future_window: ensemble member"
+          },
+          {
+            "name": "grid",
+            "type": "string",
+            "description": "future_window: model grid"
+          },
+          {
+            "name": "listed_years",
+            "type": "array",
+            "description": "future_window: years listed by the source"
+          },
+          {
+            "name": "variables",
+            "type": "array",
+            "description": "Variables available"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          },
+          {
+            "name": "evidence_basis",
+            "type": "string",
+            "description": "documentation, inventory or targeted_probe"
+          },
+          {
+            "name": "exclusions",
+            "type": "array",
+            "description": "Known exclusions"
+          },
+          {
+            "name": "weather_complete",
+            "type": "boolean",
+            "description": "Whether all EPW weather fields are present"
+          },
+          {
+            "name": "probe_lat",
+            "type": "number",
+            "description": "targeted_probe: latitude probed"
+          },
+          {
+            "name": "probe_lon",
+            "type": "number",
+            "description": "targeted_probe: longitude probed"
+          },
+          {
+            "name": "probe_id",
+            "type": "string",
+            "description": "targeted_probe: location identifier"
+          },
+          {
+            "name": "probe_name",
+            "type": "string",
+            "description": "targeted_probe: location name"
+          },
+          {
+            "name": "probe_elevation",
+            "type": "number",
+            "description": "targeted_probe: elevation, metres"
+          },
+          {
+            "name": "probe_standard_offset_minutes",
+            "type": "integer",
+            "description": "targeted_probe: standard time offset"
+          },
+          {
+            "name": "source_etag",
+            "type": "string",
+            "description": "ETag of the source file"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "product_id",
+            "reference": {
+              "resource": "data-cmip6-products",
+              "fields": "id"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data-noaa-products",
+      "path": "data/noaa/products.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 669,
+      "hash": "sha256:b4f4a2957ce7749fe467dc7a965753c6eea7eb3e66243f2e9568a458d380a0cc",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Product identifier"
+          },
+          {
+            "name": "provider",
+            "type": "string",
+            "description": "Data provider"
+          },
+          {
+            "name": "dataset",
+            "type": "string",
+            "description": "Provider dataset name"
+          },
+          {
+            "name": "version",
+            "type": "string",
+            "description": "Dataset version"
+          },
+          {
+            "name": "access_route",
+            "type": "string",
+            "description": "How the data is fetched"
+          },
+          {
+            "name": "native_product_id",
+            "type": "string",
+            "description": "Provider's own identifier or file URL"
+          },
+          {
+            "name": "spatial_kind",
+            "type": "string",
+            "description": "point, station, grid, area or unknown"
+          },
+          {
+            "name": "temporal_kind",
+            "type": "string",
+            "description": "actual, tmy_reference or future_window"
+          },
+          {
+            "name": "footprint_west",
+            "type": "number",
+            "description": "Coverage bounding box, west longitude"
+          },
+          {
+            "name": "footprint_south",
+            "type": "number",
+            "description": "Coverage bounding box, south latitude"
+          },
+          {
+            "name": "footprint_east",
+            "type": "number",
+            "description": "Coverage bounding box, east longitude"
+          },
+          {
+            "name": "footprint_north",
+            "type": "number",
+            "description": "Coverage bounding box, north latitude"
+          },
+          {
+            "name": "longitude_convention",
+            "type": "string",
+            "description": "-180_180 or 0_360"
+          },
+          {
+            "name": "source_variables",
+            "type": "array",
+            "description": "Variables the source publishes"
+          },
+          {
+            "name": "adapter_variables",
+            "type": "array",
+            "description": "Variables openepw reads from it"
+          },
+          {
+            "name": "adapter_supported",
+            "type": "boolean",
+            "description": "Whether openepw can download it"
+          },
+          {
+            "name": "native_resolution_minutes",
+            "type": "integer",
+            "description": "Native time step"
+          },
+          {
+            "name": "delivered_resolution_minutes",
+            "type": "integer",
+            "description": "Time step as delivered"
+          },
+          {
+            "name": "access_requirements",
+            "type": "array",
+            "description": "Keys or terms needed to download"
+          },
+          {
+            "name": "citation",
+            "type": "string",
+            "description": "How to cite the product"
+          },
+          {
+            "name": "license_effective",
+            "type": "string",
+            "description": "Licence in force"
+          },
+          {
+            "name": "license_original",
+            "type": "string",
+            "description": "Licence at first publication"
+          },
+          {
+            "name": "license_history",
+            "type": "string",
+            "description": "Licence changes"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "data-noaa-sites",
+      "path": "data/noaa/sites.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 4001918,
+      "hash": "sha256:55e9cf328f123cc861e428ddc328270cc3b02c2985b0b433d86a4ee837772164",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Site identifier"
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "description": "Product in products.csv"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "description": "Published station name"
+          },
+          {
+            "name": "lat",
+            "type": "number",
+            "description": "Latitude, degrees north"
+          },
+          {
+            "name": "lon",
+            "type": "number",
+            "description": "Longitude, degrees east"
+          },
+          {
+            "name": "elevation_m",
+            "type": "number",
+            "description": "Elevation, metres"
+          },
+          {
+            "name": "position_status",
+            "type": "string",
+            "description": "How the position is known"
+          },
+          {
+            "name": "station_identity_status",
+            "type": "string",
+            "description": "How the station identity is known"
+          },
+          {
+            "name": "candidate_station_ids",
+            "type": "array",
+            "description": "Station identifiers that may match"
+          },
+          {
+            "name": "operating_start",
+            "type": "date",
+            "description": "First day of operation",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "operating_end",
+            "type": "date",
+            "description": "Last day of operation",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "product_id",
+            "reference": {
+              "resource": "data-noaa-products",
+              "fields": "id"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data-noaa-entries",
+      "path": "data/noaa/entries.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 2886781,
+      "hash": "sha256:42d673ce7a9630c75a5ea5f45182f243e28300b84b0befe411cb7333fff4d60e",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Entry identifier"
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "description": "Product in products.csv"
+          },
+          {
+            "name": "site_id",
+            "type": "string",
+            "description": "Site in sites.csv; empty for gridded products"
+          },
+          {
+            "name": "scope_kind",
+            "type": "string",
+            "description": "actual, tmy_reference or future_window"
+          },
+          {
+            "name": "years",
+            "type": "array",
+            "description": "actual: years with data"
+          },
+          {
+            "name": "operating_start",
+            "type": "date",
+            "description": "actual: first day available",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "operating_end",
+            "type": "date",
+            "description": "actual: last day available",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "start_year",
+            "type": "integer",
+            "description": "tmy_reference/future_window: first year of the period"
+          },
+          {
+            "name": "end_year",
+            "type": "integer",
+            "description": "tmy_reference/future_window: last year of the period"
+          },
+          {
+            "name": "product_label",
+            "type": "string",
+            "description": "tmy_reference: published product label"
+          },
+          {
+            "name": "selected_month_years",
+            "type": "object",
+            "description": "tmy_reference: year chosen for each month"
+          },
+          {
+            "name": "scenario",
+            "type": "string",
+            "description": "future_window: emissions scenario"
+          },
+          {
+            "name": "model",
+            "type": "string",
+            "description": "future_window: climate model"
+          },
+          {
+            "name": "member",
+            "type": "string",
+            "description": "future_window: ensemble member"
+          },
+          {
+            "name": "grid",
+            "type": "string",
+            "description": "future_window: model grid"
+          },
+          {
+            "name": "listed_years",
+            "type": "array",
+            "description": "future_window: years listed by the source"
+          },
+          {
+            "name": "variables",
+            "type": "array",
+            "description": "Variables available"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          },
+          {
+            "name": "evidence_basis",
+            "type": "string",
+            "description": "documentation, inventory or targeted_probe"
+          },
+          {
+            "name": "exclusions",
+            "type": "array",
+            "description": "Known exclusions"
+          },
+          {
+            "name": "weather_complete",
+            "type": "boolean",
+            "description": "Whether all EPW weather fields are present"
+          },
+          {
+            "name": "probe_lat",
+            "type": "number",
+            "description": "targeted_probe: latitude probed"
+          },
+          {
+            "name": "probe_lon",
+            "type": "number",
+            "description": "targeted_probe: longitude probed"
+          },
+          {
+            "name": "probe_id",
+            "type": "string",
+            "description": "targeted_probe: location identifier"
+          },
+          {
+            "name": "probe_name",
+            "type": "string",
+            "description": "targeted_probe: location name"
+          },
+          {
+            "name": "probe_elevation",
+            "type": "number",
+            "description": "targeted_probe: elevation, metres"
+          },
+          {
+            "name": "probe_standard_offset_minutes",
+            "type": "integer",
+            "description": "targeted_probe: standard time offset"
+          },
+          {
+            "name": "source_etag",
+            "type": "string",
+            "description": "ETag of the source file"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "product_id",
+            "reference": {
+              "resource": "data-noaa-products",
+              "fields": "id"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data-noaa-month-counts",
+      "path": "data/noaa/month-counts.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 12491998,
+      "hash": "sha256:eb5463d288c2a83fe78585d3b8cadca71bbfe3e4cf696d59884f6a087d634f35",
+      "schema": {
+        "fields": [
+          {
+            "name": "entry_id",
+            "type": "string",
+            "description": "Entry in entries.csv"
+          },
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Calendar year"
+          },
+          {
+            "name": "m01",
+            "type": "integer",
+            "description": "Hourly records in month 01"
+          },
+          {
+            "name": "m02",
+            "type": "integer",
+            "description": "Hourly records in month 02"
+          },
+          {
+            "name": "m03",
+            "type": "integer",
+            "description": "Hourly records in month 03"
+          },
+          {
+            "name": "m04",
+            "type": "integer",
+            "description": "Hourly records in month 04"
+          },
+          {
+            "name": "m05",
+            "type": "integer",
+            "description": "Hourly records in month 05"
+          },
+          {
+            "name": "m06",
+            "type": "integer",
+            "description": "Hourly records in month 06"
+          },
+          {
+            "name": "m07",
+            "type": "integer",
+            "description": "Hourly records in month 07"
+          },
+          {
+            "name": "m08",
+            "type": "integer",
+            "description": "Hourly records in month 08"
+          },
+          {
+            "name": "m09",
+            "type": "integer",
+            "description": "Hourly records in month 09"
+          },
+          {
+            "name": "m10",
+            "type": "integer",
+            "description": "Hourly records in month 10"
+          },
+          {
+            "name": "m11",
+            "type": "integer",
+            "description": "Hourly records in month 11"
+          },
+          {
+            "name": "m12",
+            "type": "integer",
+            "description": "Hourly records in month 12"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "entry_id",
+          "year"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "entry_id",
+            "reference": {
+              "resource": "data-noaa-entries",
+              "fields": "id"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data-nsrdb-products",
+      "path": "data/nsrdb/products.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 1905,
+      "hash": "sha256:cb2ae90708b5204699962fb56971f4a5feee1ff823dc05d08715164f0b893e68",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Product identifier"
+          },
+          {
+            "name": "provider",
+            "type": "string",
+            "description": "Data provider"
+          },
+          {
+            "name": "dataset",
+            "type": "string",
+            "description": "Provider dataset name"
+          },
+          {
+            "name": "version",
+            "type": "string",
+            "description": "Dataset version"
+          },
+          {
+            "name": "access_route",
+            "type": "string",
+            "description": "How the data is fetched"
+          },
+          {
+            "name": "native_product_id",
+            "type": "string",
+            "description": "Provider's own identifier or file URL"
+          },
+          {
+            "name": "spatial_kind",
+            "type": "string",
+            "description": "point, station, grid, area or unknown"
+          },
+          {
+            "name": "temporal_kind",
+            "type": "string",
+            "description": "actual, tmy_reference or future_window"
+          },
+          {
+            "name": "footprint_west",
+            "type": "number",
+            "description": "Coverage bounding box, west longitude"
+          },
+          {
+            "name": "footprint_south",
+            "type": "number",
+            "description": "Coverage bounding box, south latitude"
+          },
+          {
+            "name": "footprint_east",
+            "type": "number",
+            "description": "Coverage bounding box, east longitude"
+          },
+          {
+            "name": "footprint_north",
+            "type": "number",
+            "description": "Coverage bounding box, north latitude"
+          },
+          {
+            "name": "longitude_convention",
+            "type": "string",
+            "description": "-180_180 or 0_360"
+          },
+          {
+            "name": "source_variables",
+            "type": "array",
+            "description": "Variables the source publishes"
+          },
+          {
+            "name": "adapter_variables",
+            "type": "array",
+            "description": "Variables openepw reads from it"
+          },
+          {
+            "name": "adapter_supported",
+            "type": "boolean",
+            "description": "Whether openepw can download it"
+          },
+          {
+            "name": "native_resolution_minutes",
+            "type": "integer",
+            "description": "Native time step"
+          },
+          {
+            "name": "delivered_resolution_minutes",
+            "type": "integer",
+            "description": "Time step as delivered"
+          },
+          {
+            "name": "access_requirements",
+            "type": "array",
+            "description": "Keys or terms needed to download"
+          },
+          {
+            "name": "citation",
+            "type": "string",
+            "description": "How to cite the product"
+          },
+          {
+            "name": "license_effective",
+            "type": "string",
+            "description": "Licence in force"
+          },
+          {
+            "name": "license_original",
+            "type": "string",
+            "description": "Licence at first publication"
+          },
+          {
+            "name": "license_history",
+            "type": "string",
+            "description": "Licence changes"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "data-nsrdb-sites",
+      "path": "data/nsrdb/sites.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 144,
+      "hash": "sha256:1673400b95cdb5c2295d3cd8d94ec365de92d948c6889c52bf90473f86331d4f",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Site identifier"
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "description": "Product in products.csv"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "description": "Published station name"
+          },
+          {
+            "name": "lat",
+            "type": "number",
+            "description": "Latitude, degrees north"
+          },
+          {
+            "name": "lon",
+            "type": "number",
+            "description": "Longitude, degrees east"
+          },
+          {
+            "name": "elevation_m",
+            "type": "number",
+            "description": "Elevation, metres"
+          },
+          {
+            "name": "position_status",
+            "type": "string",
+            "description": "How the position is known"
+          },
+          {
+            "name": "station_identity_status",
+            "type": "string",
+            "description": "How the station identity is known"
+          },
+          {
+            "name": "candidate_station_ids",
+            "type": "array",
+            "description": "Station identifiers that may match"
+          },
+          {
+            "name": "operating_start",
+            "type": "date",
+            "description": "First day of operation",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "operating_end",
+            "type": "date",
+            "description": "Last day of operation",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "product_id",
+            "reference": {
+              "resource": "data-nsrdb-products",
+              "fields": "id"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data-nsrdb-entries",
+      "path": "data/nsrdb/entries.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 6188,
+      "hash": "sha256:b547d346aa224ec7349c30a51088afc700747600f142b254ae22831baa65727b",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Entry identifier"
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "description": "Product in products.csv"
+          },
+          {
+            "name": "site_id",
+            "type": "string",
+            "description": "Site in sites.csv; empty for gridded products"
+          },
+          {
+            "name": "scope_kind",
+            "type": "string",
+            "description": "actual, tmy_reference or future_window"
+          },
+          {
+            "name": "years",
+            "type": "array",
+            "description": "actual: years with data"
+          },
+          {
+            "name": "operating_start",
+            "type": "date",
+            "description": "actual: first day available",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "operating_end",
+            "type": "date",
+            "description": "actual: last day available",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "start_year",
+            "type": "integer",
+            "description": "tmy_reference/future_window: first year of the period"
+          },
+          {
+            "name": "end_year",
+            "type": "integer",
+            "description": "tmy_reference/future_window: last year of the period"
+          },
+          {
+            "name": "product_label",
+            "type": "string",
+            "description": "tmy_reference: published product label"
+          },
+          {
+            "name": "selected_month_years",
+            "type": "object",
+            "description": "tmy_reference: year chosen for each month"
+          },
+          {
+            "name": "scenario",
+            "type": "string",
+            "description": "future_window: emissions scenario"
+          },
+          {
+            "name": "model",
+            "type": "string",
+            "description": "future_window: climate model"
+          },
+          {
+            "name": "member",
+            "type": "string",
+            "description": "future_window: ensemble member"
+          },
+          {
+            "name": "grid",
+            "type": "string",
+            "description": "future_window: model grid"
+          },
+          {
+            "name": "listed_years",
+            "type": "array",
+            "description": "future_window: years listed by the source"
+          },
+          {
+            "name": "variables",
+            "type": "array",
+            "description": "Variables available"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          },
+          {
+            "name": "evidence_basis",
+            "type": "string",
+            "description": "documentation, inventory or targeted_probe"
+          },
+          {
+            "name": "exclusions",
+            "type": "array",
+            "description": "Known exclusions"
+          },
+          {
+            "name": "weather_complete",
+            "type": "boolean",
+            "description": "Whether all EPW weather fields are present"
+          },
+          {
+            "name": "probe_lat",
+            "type": "number",
+            "description": "targeted_probe: latitude probed"
+          },
+          {
+            "name": "probe_lon",
+            "type": "number",
+            "description": "targeted_probe: longitude probed"
+          },
+          {
+            "name": "probe_id",
+            "type": "string",
+            "description": "targeted_probe: location identifier"
+          },
+          {
+            "name": "probe_name",
+            "type": "string",
+            "description": "targeted_probe: location name"
+          },
+          {
+            "name": "probe_elevation",
+            "type": "number",
+            "description": "targeted_probe: elevation, metres"
+          },
+          {
+            "name": "probe_standard_offset_minutes",
+            "type": "integer",
+            "description": "targeted_probe: standard time offset"
+          },
+          {
+            "name": "source_etag",
+            "type": "string",
+            "description": "ETag of the source file"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "product_id",
+            "reference": {
+              "resource": "data-nsrdb-products",
+              "fields": "id"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data-oedi-products",
+      "path": "data/oedi/products.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 772,
+      "hash": "sha256:c36b24443934471cdb232e2519b5591491eeab55d1adc3281d1796ad2570c37d",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Product identifier"
+          },
+          {
+            "name": "provider",
+            "type": "string",
+            "description": "Data provider"
+          },
+          {
+            "name": "dataset",
+            "type": "string",
+            "description": "Provider dataset name"
+          },
+          {
+            "name": "version",
+            "type": "string",
+            "description": "Dataset version"
+          },
+          {
+            "name": "access_route",
+            "type": "string",
+            "description": "How the data is fetched"
+          },
+          {
+            "name": "native_product_id",
+            "type": "string",
+            "description": "Provider's own identifier or file URL"
+          },
+          {
+            "name": "spatial_kind",
+            "type": "string",
+            "description": "point, station, grid, area or unknown"
+          },
+          {
+            "name": "temporal_kind",
+            "type": "string",
+            "description": "actual, tmy_reference or future_window"
+          },
+          {
+            "name": "footprint_west",
+            "type": "number",
+            "description": "Coverage bounding box, west longitude"
+          },
+          {
+            "name": "footprint_south",
+            "type": "number",
+            "description": "Coverage bounding box, south latitude"
+          },
+          {
+            "name": "footprint_east",
+            "type": "number",
+            "description": "Coverage bounding box, east longitude"
+          },
+          {
+            "name": "footprint_north",
+            "type": "number",
+            "description": "Coverage bounding box, north latitude"
+          },
+          {
+            "name": "longitude_convention",
+            "type": "string",
+            "description": "-180_180 or 0_360"
+          },
+          {
+            "name": "source_variables",
+            "type": "array",
+            "description": "Variables the source publishes"
+          },
+          {
+            "name": "adapter_variables",
+            "type": "array",
+            "description": "Variables openepw reads from it"
+          },
+          {
+            "name": "adapter_supported",
+            "type": "boolean",
+            "description": "Whether openepw can download it"
+          },
+          {
+            "name": "native_resolution_minutes",
+            "type": "integer",
+            "description": "Native time step"
+          },
+          {
+            "name": "delivered_resolution_minutes",
+            "type": "integer",
+            "description": "Time step as delivered"
+          },
+          {
+            "name": "access_requirements",
+            "type": "array",
+            "description": "Keys or terms needed to download"
+          },
+          {
+            "name": "citation",
+            "type": "string",
+            "description": "How to cite the product"
+          },
+          {
+            "name": "license_effective",
+            "type": "string",
+            "description": "Licence in force"
+          },
+          {
+            "name": "license_original",
+            "type": "string",
+            "description": "Licence at first publication"
+          },
+          {
+            "name": "license_history",
+            "type": "string",
+            "description": "Licence changes"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "data-oedi-sites",
+      "path": "data/oedi/sites.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 670776,
+      "hash": "sha256:36b5177cf9d45a74135c146bd5569e27a5d77d55f3fd1c8b671ad03a68b7bff6",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Site identifier"
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "description": "Product in products.csv"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "description": "Published station name"
+          },
+          {
+            "name": "lat",
+            "type": "number",
+            "description": "Latitude, degrees north"
+          },
+          {
+            "name": "lon",
+            "type": "number",
+            "description": "Longitude, degrees east"
+          },
+          {
+            "name": "elevation_m",
+            "type": "number",
+            "description": "Elevation, metres"
+          },
+          {
+            "name": "position_status",
+            "type": "string",
+            "description": "How the position is known"
+          },
+          {
+            "name": "station_identity_status",
+            "type": "string",
+            "description": "How the station identity is known"
+          },
+          {
+            "name": "candidate_station_ids",
+            "type": "array",
+            "description": "Station identifiers that may match"
+          },
+          {
+            "name": "operating_start",
+            "type": "date",
+            "description": "First day of operation",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "operating_end",
+            "type": "date",
+            "description": "Last day of operation",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "product_id",
+            "reference": {
+              "resource": "data-oedi-products",
+              "fields": "id"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data-oedi-entries",
+      "path": "data/oedi/entries.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 2434632,
+      "hash": "sha256:fdbffc6f2cb3bcb3bcc2adf0b59919f7654e592cc4c447c1365cc3b26516704f",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Entry identifier"
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "description": "Product in products.csv"
+          },
+          {
+            "name": "site_id",
+            "type": "string",
+            "description": "Site in sites.csv; empty for gridded products"
+          },
+          {
+            "name": "scope_kind",
+            "type": "string",
+            "description": "actual, tmy_reference or future_window"
+          },
+          {
+            "name": "years",
+            "type": "array",
+            "description": "actual: years with data"
+          },
+          {
+            "name": "operating_start",
+            "type": "date",
+            "description": "actual: first day available",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "operating_end",
+            "type": "date",
+            "description": "actual: last day available",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "start_year",
+            "type": "integer",
+            "description": "tmy_reference/future_window: first year of the period"
+          },
+          {
+            "name": "end_year",
+            "type": "integer",
+            "description": "tmy_reference/future_window: last year of the period"
+          },
+          {
+            "name": "product_label",
+            "type": "string",
+            "description": "tmy_reference: published product label"
+          },
+          {
+            "name": "selected_month_years",
+            "type": "object",
+            "description": "tmy_reference: year chosen for each month"
+          },
+          {
+            "name": "scenario",
+            "type": "string",
+            "description": "future_window: emissions scenario"
+          },
+          {
+            "name": "model",
+            "type": "string",
+            "description": "future_window: climate model"
+          },
+          {
+            "name": "member",
+            "type": "string",
+            "description": "future_window: ensemble member"
+          },
+          {
+            "name": "grid",
+            "type": "string",
+            "description": "future_window: model grid"
+          },
+          {
+            "name": "listed_years",
+            "type": "array",
+            "description": "future_window: years listed by the source"
+          },
+          {
+            "name": "variables",
+            "type": "array",
+            "description": "Variables available"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          },
+          {
+            "name": "evidence_basis",
+            "type": "string",
+            "description": "documentation, inventory or targeted_probe"
+          },
+          {
+            "name": "exclusions",
+            "type": "array",
+            "description": "Known exclusions"
+          },
+          {
+            "name": "weather_complete",
+            "type": "boolean",
+            "description": "Whether all EPW weather fields are present"
+          },
+          {
+            "name": "probe_lat",
+            "type": "number",
+            "description": "targeted_probe: latitude probed"
+          },
+          {
+            "name": "probe_lon",
+            "type": "number",
+            "description": "targeted_probe: longitude probed"
+          },
+          {
+            "name": "probe_id",
+            "type": "string",
+            "description": "targeted_probe: location identifier"
+          },
+          {
+            "name": "probe_name",
+            "type": "string",
+            "description": "targeted_probe: location name"
+          },
+          {
+            "name": "probe_elevation",
+            "type": "number",
+            "description": "targeted_probe: elevation, metres"
+          },
+          {
+            "name": "probe_standard_offset_minutes",
+            "type": "integer",
+            "description": "targeted_probe: standard time offset"
+          },
+          {
+            "name": "source_etag",
+            "type": "string",
+            "description": "ETag of the source file"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "product_id",
+            "reference": {
+              "resource": "data-oedi-products",
+              "fields": "id"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data-onebuilding-products",
+      "path": "data/onebuilding/products.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 10304508,
+      "hash": "sha256:2c59de2deed580df94133ce2cd5be254dcbf54349fae4226c906dbcf8f4fed37",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Product identifier"
+          },
+          {
+            "name": "provider",
+            "type": "string",
+            "description": "Data provider"
+          },
+          {
+            "name": "dataset",
+            "type": "string",
+            "description": "Provider dataset name"
+          },
+          {
+            "name": "version",
+            "type": "string",
+            "description": "Dataset version"
+          },
+          {
+            "name": "access_route",
+            "type": "string",
+            "description": "How the data is fetched"
+          },
+          {
+            "name": "native_product_id",
+            "type": "string",
+            "description": "Provider's own identifier or file URL"
+          },
+          {
+            "name": "spatial_kind",
+            "type": "string",
+            "description": "point, station, grid, area or unknown"
+          },
+          {
+            "name": "temporal_kind",
+            "type": "string",
+            "description": "actual, tmy_reference or future_window"
+          },
+          {
+            "name": "footprint_west",
+            "type": "number",
+            "description": "Coverage bounding box, west longitude"
+          },
+          {
+            "name": "footprint_south",
+            "type": "number",
+            "description": "Coverage bounding box, south latitude"
+          },
+          {
+            "name": "footprint_east",
+            "type": "number",
+            "description": "Coverage bounding box, east longitude"
+          },
+          {
+            "name": "footprint_north",
+            "type": "number",
+            "description": "Coverage bounding box, north latitude"
+          },
+          {
+            "name": "longitude_convention",
+            "type": "string",
+            "description": "-180_180 or 0_360"
+          },
+          {
+            "name": "source_variables",
+            "type": "array",
+            "description": "Variables the source publishes"
+          },
+          {
+            "name": "adapter_variables",
+            "type": "array",
+            "description": "Variables openepw reads from it"
+          },
+          {
+            "name": "adapter_supported",
+            "type": "boolean",
+            "description": "Whether openepw can download it"
+          },
+          {
+            "name": "native_resolution_minutes",
+            "type": "integer",
+            "description": "Native time step"
+          },
+          {
+            "name": "delivered_resolution_minutes",
+            "type": "integer",
+            "description": "Time step as delivered"
+          },
+          {
+            "name": "access_requirements",
+            "type": "array",
+            "description": "Keys or terms needed to download"
+          },
+          {
+            "name": "citation",
+            "type": "string",
+            "description": "How to cite the product"
+          },
+          {
+            "name": "license_effective",
+            "type": "string",
+            "description": "Licence in force"
+          },
+          {
+            "name": "license_original",
+            "type": "string",
+            "description": "Licence at first publication"
+          },
+          {
+            "name": "license_history",
+            "type": "string",
+            "description": "Licence changes"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "data-onebuilding-sites",
+      "path": "data/onebuilding/sites.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 4606582,
+      "hash": "sha256:815a3df4274af70abe8f482d62226686bf13bb712c8cf415a332ee88a2243921",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Site identifier"
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "description": "Product in products.csv"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "description": "Published station name"
+          },
+          {
+            "name": "lat",
+            "type": "number",
+            "description": "Latitude, degrees north"
+          },
+          {
+            "name": "lon",
+            "type": "number",
+            "description": "Longitude, degrees east"
+          },
+          {
+            "name": "elevation_m",
+            "type": "number",
+            "description": "Elevation, metres"
+          },
+          {
+            "name": "position_status",
+            "type": "string",
+            "description": "How the position is known"
+          },
+          {
+            "name": "station_identity_status",
+            "type": "string",
+            "description": "How the station identity is known"
+          },
+          {
+            "name": "candidate_station_ids",
+            "type": "array",
+            "description": "Station identifiers that may match"
+          },
+          {
+            "name": "operating_start",
+            "type": "date",
+            "description": "First day of operation",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "operating_end",
+            "type": "date",
+            "description": "Last day of operation",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "product_id",
+            "reference": {
+              "resource": "data-onebuilding-products",
+              "fields": "id"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data-onebuilding-entries",
+      "path": "data/onebuilding/entries.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 5683739,
+      "hash": "sha256:5e13a89f82bb40e51b7fcdcb44e7ee81b4caef597240e7aea24c2a30d2eaea56",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Entry identifier"
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "description": "Product in products.csv"
+          },
+          {
+            "name": "site_id",
+            "type": "string",
+            "description": "Site in sites.csv; empty for gridded products"
+          },
+          {
+            "name": "scope_kind",
+            "type": "string",
+            "description": "actual, tmy_reference or future_window"
+          },
+          {
+            "name": "years",
+            "type": "array",
+            "description": "actual: years with data"
+          },
+          {
+            "name": "operating_start",
+            "type": "date",
+            "description": "actual: first day available",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "operating_end",
+            "type": "date",
+            "description": "actual: last day available",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "start_year",
+            "type": "integer",
+            "description": "tmy_reference/future_window: first year of the period"
+          },
+          {
+            "name": "end_year",
+            "type": "integer",
+            "description": "tmy_reference/future_window: last year of the period"
+          },
+          {
+            "name": "product_label",
+            "type": "string",
+            "description": "tmy_reference: published product label"
+          },
+          {
+            "name": "selected_month_years",
+            "type": "object",
+            "description": "tmy_reference: year chosen for each month"
+          },
+          {
+            "name": "scenario",
+            "type": "string",
+            "description": "future_window: emissions scenario"
+          },
+          {
+            "name": "model",
+            "type": "string",
+            "description": "future_window: climate model"
+          },
+          {
+            "name": "member",
+            "type": "string",
+            "description": "future_window: ensemble member"
+          },
+          {
+            "name": "grid",
+            "type": "string",
+            "description": "future_window: model grid"
+          },
+          {
+            "name": "listed_years",
+            "type": "array",
+            "description": "future_window: years listed by the source"
+          },
+          {
+            "name": "variables",
+            "type": "array",
+            "description": "Variables available"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          },
+          {
+            "name": "evidence_basis",
+            "type": "string",
+            "description": "documentation, inventory or targeted_probe"
+          },
+          {
+            "name": "exclusions",
+            "type": "array",
+            "description": "Known exclusions"
+          },
+          {
+            "name": "weather_complete",
+            "type": "boolean",
+            "description": "Whether all EPW weather fields are present"
+          },
+          {
+            "name": "probe_lat",
+            "type": "number",
+            "description": "targeted_probe: latitude probed"
+          },
+          {
+            "name": "probe_lon",
+            "type": "number",
+            "description": "targeted_probe: longitude probed"
+          },
+          {
+            "name": "probe_id",
+            "type": "string",
+            "description": "targeted_probe: location identifier"
+          },
+          {
+            "name": "probe_name",
+            "type": "string",
+            "description": "targeted_probe: location name"
+          },
+          {
+            "name": "probe_elevation",
+            "type": "number",
+            "description": "targeted_probe: elevation, metres"
+          },
+          {
+            "name": "probe_standard_offset_minutes",
+            "type": "integer",
+            "description": "targeted_probe: standard time offset"
+          },
+          {
+            "name": "source_etag",
+            "type": "string",
+            "description": "ETag of the source file"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "product_id",
+            "reference": {
+              "resource": "data-onebuilding-products",
+              "fields": "id"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data-openmeteo-products",
+      "path": "data/openmeteo/products.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 1004,
+      "hash": "sha256:bfe053bca398450413354ffcde527d0a22628cc3f07ec929269ce654fe79bf85",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Product identifier"
+          },
+          {
+            "name": "provider",
+            "type": "string",
+            "description": "Data provider"
+          },
+          {
+            "name": "dataset",
+            "type": "string",
+            "description": "Provider dataset name"
+          },
+          {
+            "name": "version",
+            "type": "string",
+            "description": "Dataset version"
+          },
+          {
+            "name": "access_route",
+            "type": "string",
+            "description": "How the data is fetched"
+          },
+          {
+            "name": "native_product_id",
+            "type": "string",
+            "description": "Provider's own identifier or file URL"
+          },
+          {
+            "name": "spatial_kind",
+            "type": "string",
+            "description": "point, station, grid, area or unknown"
+          },
+          {
+            "name": "temporal_kind",
+            "type": "string",
+            "description": "actual, tmy_reference or future_window"
+          },
+          {
+            "name": "footprint_west",
+            "type": "number",
+            "description": "Coverage bounding box, west longitude"
+          },
+          {
+            "name": "footprint_south",
+            "type": "number",
+            "description": "Coverage bounding box, south latitude"
+          },
+          {
+            "name": "footprint_east",
+            "type": "number",
+            "description": "Coverage bounding box, east longitude"
+          },
+          {
+            "name": "footprint_north",
+            "type": "number",
+            "description": "Coverage bounding box, north latitude"
+          },
+          {
+            "name": "longitude_convention",
+            "type": "string",
+            "description": "-180_180 or 0_360"
+          },
+          {
+            "name": "source_variables",
+            "type": "array",
+            "description": "Variables the source publishes"
+          },
+          {
+            "name": "adapter_variables",
+            "type": "array",
+            "description": "Variables openepw reads from it"
+          },
+          {
+            "name": "adapter_supported",
+            "type": "boolean",
+            "description": "Whether openepw can download it"
+          },
+          {
+            "name": "native_resolution_minutes",
+            "type": "integer",
+            "description": "Native time step"
+          },
+          {
+            "name": "delivered_resolution_minutes",
+            "type": "integer",
+            "description": "Time step as delivered"
+          },
+          {
+            "name": "access_requirements",
+            "type": "array",
+            "description": "Keys or terms needed to download"
+          },
+          {
+            "name": "citation",
+            "type": "string",
+            "description": "How to cite the product"
+          },
+          {
+            "name": "license_effective",
+            "type": "string",
+            "description": "Licence in force"
+          },
+          {
+            "name": "license_original",
+            "type": "string",
+            "description": "Licence at first publication"
+          },
+          {
+            "name": "license_history",
+            "type": "string",
+            "description": "Licence changes"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "data-openmeteo-sites",
+      "path": "data/openmeteo/sites.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 144,
+      "hash": "sha256:1673400b95cdb5c2295d3cd8d94ec365de92d948c6889c52bf90473f86331d4f",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Site identifier"
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "description": "Product in products.csv"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "description": "Published station name"
+          },
+          {
+            "name": "lat",
+            "type": "number",
+            "description": "Latitude, degrees north"
+          },
+          {
+            "name": "lon",
+            "type": "number",
+            "description": "Longitude, degrees east"
+          },
+          {
+            "name": "elevation_m",
+            "type": "number",
+            "description": "Elevation, metres"
+          },
+          {
+            "name": "position_status",
+            "type": "string",
+            "description": "How the position is known"
+          },
+          {
+            "name": "station_identity_status",
+            "type": "string",
+            "description": "How the station identity is known"
+          },
+          {
+            "name": "candidate_station_ids",
+            "type": "array",
+            "description": "Station identifiers that may match"
+          },
+          {
+            "name": "operating_start",
+            "type": "date",
+            "description": "First day of operation",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "operating_end",
+            "type": "date",
+            "description": "Last day of operation",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "product_id",
+            "reference": {
+              "resource": "data-openmeteo-products",
+              "fields": "id"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data-openmeteo-entries",
+      "path": "data/openmeteo/entries.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 584,
+      "hash": "sha256:3f9fff3c7e970ec0bd4f7e3ae436e7ae1e7d634626f739c741b3c59d3c3a9d5e",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Entry identifier"
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "description": "Product in products.csv"
+          },
+          {
+            "name": "site_id",
+            "type": "string",
+            "description": "Site in sites.csv; empty for gridded products"
+          },
+          {
+            "name": "scope_kind",
+            "type": "string",
+            "description": "actual, tmy_reference or future_window"
+          },
+          {
+            "name": "years",
+            "type": "array",
+            "description": "actual: years with data"
+          },
+          {
+            "name": "operating_start",
+            "type": "date",
+            "description": "actual: first day available",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "operating_end",
+            "type": "date",
+            "description": "actual: last day available",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "start_year",
+            "type": "integer",
+            "description": "tmy_reference/future_window: first year of the period"
+          },
+          {
+            "name": "end_year",
+            "type": "integer",
+            "description": "tmy_reference/future_window: last year of the period"
+          },
+          {
+            "name": "product_label",
+            "type": "string",
+            "description": "tmy_reference: published product label"
+          },
+          {
+            "name": "selected_month_years",
+            "type": "object",
+            "description": "tmy_reference: year chosen for each month"
+          },
+          {
+            "name": "scenario",
+            "type": "string",
+            "description": "future_window: emissions scenario"
+          },
+          {
+            "name": "model",
+            "type": "string",
+            "description": "future_window: climate model"
+          },
+          {
+            "name": "member",
+            "type": "string",
+            "description": "future_window: ensemble member"
+          },
+          {
+            "name": "grid",
+            "type": "string",
+            "description": "future_window: model grid"
+          },
+          {
+            "name": "listed_years",
+            "type": "array",
+            "description": "future_window: years listed by the source"
+          },
+          {
+            "name": "variables",
+            "type": "array",
+            "description": "Variables available"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          },
+          {
+            "name": "evidence_basis",
+            "type": "string",
+            "description": "documentation, inventory or targeted_probe"
+          },
+          {
+            "name": "exclusions",
+            "type": "array",
+            "description": "Known exclusions"
+          },
+          {
+            "name": "weather_complete",
+            "type": "boolean",
+            "description": "Whether all EPW weather fields are present"
+          },
+          {
+            "name": "probe_lat",
+            "type": "number",
+            "description": "targeted_probe: latitude probed"
+          },
+          {
+            "name": "probe_lon",
+            "type": "number",
+            "description": "targeted_probe: longitude probed"
+          },
+          {
+            "name": "probe_id",
+            "type": "string",
+            "description": "targeted_probe: location identifier"
+          },
+          {
+            "name": "probe_name",
+            "type": "string",
+            "description": "targeted_probe: location name"
+          },
+          {
+            "name": "probe_elevation",
+            "type": "number",
+            "description": "targeted_probe: elevation, metres"
+          },
+          {
+            "name": "probe_standard_offset_minutes",
+            "type": "integer",
+            "description": "targeted_probe: standard time offset"
+          },
+          {
+            "name": "source_etag",
+            "type": "string",
+            "description": "ETag of the source file"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "product_id",
+            "reference": {
+              "resource": "data-openmeteo-products",
+              "fields": "id"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data-pvgis-products",
+      "path": "data/pvgis/products.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 720,
+      "hash": "sha256:909063e2ba2fef145f4f6f54e1d36bc19b316d616750e7dbdab1fb3af4af9557",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Product identifier"
+          },
+          {
+            "name": "provider",
+            "type": "string",
+            "description": "Data provider"
+          },
+          {
+            "name": "dataset",
+            "type": "string",
+            "description": "Provider dataset name"
+          },
+          {
+            "name": "version",
+            "type": "string",
+            "description": "Dataset version"
+          },
+          {
+            "name": "access_route",
+            "type": "string",
+            "description": "How the data is fetched"
+          },
+          {
+            "name": "native_product_id",
+            "type": "string",
+            "description": "Provider's own identifier or file URL"
+          },
+          {
+            "name": "spatial_kind",
+            "type": "string",
+            "description": "point, station, grid, area or unknown"
+          },
+          {
+            "name": "temporal_kind",
+            "type": "string",
+            "description": "actual, tmy_reference or future_window"
+          },
+          {
+            "name": "footprint_west",
+            "type": "number",
+            "description": "Coverage bounding box, west longitude"
+          },
+          {
+            "name": "footprint_south",
+            "type": "number",
+            "description": "Coverage bounding box, south latitude"
+          },
+          {
+            "name": "footprint_east",
+            "type": "number",
+            "description": "Coverage bounding box, east longitude"
+          },
+          {
+            "name": "footprint_north",
+            "type": "number",
+            "description": "Coverage bounding box, north latitude"
+          },
+          {
+            "name": "longitude_convention",
+            "type": "string",
+            "description": "-180_180 or 0_360"
+          },
+          {
+            "name": "source_variables",
+            "type": "array",
+            "description": "Variables the source publishes"
+          },
+          {
+            "name": "adapter_variables",
+            "type": "array",
+            "description": "Variables openepw reads from it"
+          },
+          {
+            "name": "adapter_supported",
+            "type": "boolean",
+            "description": "Whether openepw can download it"
+          },
+          {
+            "name": "native_resolution_minutes",
+            "type": "integer",
+            "description": "Native time step"
+          },
+          {
+            "name": "delivered_resolution_minutes",
+            "type": "integer",
+            "description": "Time step as delivered"
+          },
+          {
+            "name": "access_requirements",
+            "type": "array",
+            "description": "Keys or terms needed to download"
+          },
+          {
+            "name": "citation",
+            "type": "string",
+            "description": "How to cite the product"
+          },
+          {
+            "name": "license_effective",
+            "type": "string",
+            "description": "Licence in force"
+          },
+          {
+            "name": "license_original",
+            "type": "string",
+            "description": "Licence at first publication"
+          },
+          {
+            "name": "license_history",
+            "type": "string",
+            "description": "Licence changes"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "data-pvgis-sites",
+      "path": "data/pvgis/sites.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 144,
+      "hash": "sha256:1673400b95cdb5c2295d3cd8d94ec365de92d948c6889c52bf90473f86331d4f",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Site identifier"
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "description": "Product in products.csv"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "description": "Published station name"
+          },
+          {
+            "name": "lat",
+            "type": "number",
+            "description": "Latitude, degrees north"
+          },
+          {
+            "name": "lon",
+            "type": "number",
+            "description": "Longitude, degrees east"
+          },
+          {
+            "name": "elevation_m",
+            "type": "number",
+            "description": "Elevation, metres"
+          },
+          {
+            "name": "position_status",
+            "type": "string",
+            "description": "How the position is known"
+          },
+          {
+            "name": "station_identity_status",
+            "type": "string",
+            "description": "How the station identity is known"
+          },
+          {
+            "name": "candidate_station_ids",
+            "type": "array",
+            "description": "Station identifiers that may match"
+          },
+          {
+            "name": "operating_start",
+            "type": "date",
+            "description": "First day of operation",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "operating_end",
+            "type": "date",
+            "description": "Last day of operation",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "product_id",
+            "reference": {
+              "resource": "data-pvgis-products",
+              "fields": "id"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data-pvgis-entries",
+      "path": "data/pvgis/entries.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 628,
+      "hash": "sha256:c9002ad9c8e4849f0c2566842e1c0d71e03db72f153b166976aa6381347a0381",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "description": "Entry identifier"
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "description": "Product in products.csv"
+          },
+          {
+            "name": "site_id",
+            "type": "string",
+            "description": "Site in sites.csv; empty for gridded products"
+          },
+          {
+            "name": "scope_kind",
+            "type": "string",
+            "description": "actual, tmy_reference or future_window"
+          },
+          {
+            "name": "years",
+            "type": "array",
+            "description": "actual: years with data"
+          },
+          {
+            "name": "operating_start",
+            "type": "date",
+            "description": "actual: first day available",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "operating_end",
+            "type": "date",
+            "description": "actual: last day available",
+            "format": "%Y-%m-%d"
+          },
+          {
+            "name": "start_year",
+            "type": "integer",
+            "description": "tmy_reference/future_window: first year of the period"
+          },
+          {
+            "name": "end_year",
+            "type": "integer",
+            "description": "tmy_reference/future_window: last year of the period"
+          },
+          {
+            "name": "product_label",
+            "type": "string",
+            "description": "tmy_reference: published product label"
+          },
+          {
+            "name": "selected_month_years",
+            "type": "object",
+            "description": "tmy_reference: year chosen for each month"
+          },
+          {
+            "name": "scenario",
+            "type": "string",
+            "description": "future_window: emissions scenario"
+          },
+          {
+            "name": "model",
+            "type": "string",
+            "description": "future_window: climate model"
+          },
+          {
+            "name": "member",
+            "type": "string",
+            "description": "future_window: ensemble member"
+          },
+          {
+            "name": "grid",
+            "type": "string",
+            "description": "future_window: model grid"
+          },
+          {
+            "name": "listed_years",
+            "type": "array",
+            "description": "future_window: years listed by the source"
+          },
+          {
+            "name": "variables",
+            "type": "array",
+            "description": "Variables available"
+          },
+          {
+            "name": "evidence_ids",
+            "type": "array",
+            "description": "Evidence in sources.csv"
+          },
+          {
+            "name": "evidence_basis",
+            "type": "string",
+            "description": "documentation, inventory or targeted_probe"
+          },
+          {
+            "name": "exclusions",
+            "type": "array",
+            "description": "Known exclusions"
+          },
+          {
+            "name": "weather_complete",
+            "type": "boolean",
+            "description": "Whether all EPW weather fields are present"
+          },
+          {
+            "name": "probe_lat",
+            "type": "number",
+            "description": "targeted_probe: latitude probed"
+          },
+          {
+            "name": "probe_lon",
+            "type": "number",
+            "description": "targeted_probe: longitude probed"
+          },
+          {
+            "name": "probe_id",
+            "type": "string",
+            "description": "targeted_probe: location identifier"
+          },
+          {
+            "name": "probe_name",
+            "type": "string",
+            "description": "targeted_probe: location name"
+          },
+          {
+            "name": "probe_elevation",
+            "type": "number",
+            "description": "targeted_probe: elevation, metres"
+          },
+          {
+            "name": "probe_standard_offset_minutes",
+            "type": "integer",
+            "description": "targeted_probe: standard time offset"
+          },
+          {
+            "name": "source_etag",
+            "type": "string",
+            "description": "ETag of the source file"
+          }
+        ],
+        "missingValues": [
+          ""
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "product_id",
+            "reference": {
+              "resource": "data-pvgis-products",
+              "fields": "id"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data-footprints-nsrdb-nsrdb-goes-tmy-v4-0-0-tdy-2023-manifest.json",
+      "path": "data/footprints/nsrdb/nsrdb-GOES-tmy-v4-0-0/tdy-2023/manifest.json",
+      "format": "json",
+      "mediatype": "application/json",
+      "bytes": 938,
+      "hash": "sha256:78ae6b13c938b9ae13a7a9c84aa4b31e4ec063a8e8b386e8b6098cf4f41a2ceb"
+    },
+    {
+      "name": "data-footprints-nsrdb-nsrdb-goes-tmy-v4-0-0-tdy-2023-mask.json",
+      "path": "data/footprints/nsrdb/nsrdb-GOES-tmy-v4-0-0/tdy-2023/mask.json",
+      "format": "json",
+      "mediatype": "application/json",
+      "bytes": 535961,
+      "hash": "sha256:0410d124c6c9ea413471b4dad6b93266e216587bf73d0e9f9d34ca018d79c519"
+    }
+  ]
+}

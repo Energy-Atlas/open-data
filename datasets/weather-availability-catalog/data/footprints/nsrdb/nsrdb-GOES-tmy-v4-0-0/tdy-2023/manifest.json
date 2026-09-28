@@ -1,0 +1,26 @@
+{
+  "entries": [
+    {
+      "basis": "source_grid_sites",
+      "coordinate_count": 2018267,
+      "mask_path": "mask.json",
+      "mask_sha256": "0410d124c6c9ea413471b4dad6b93266e216587bf73d0e9f9d34ca018d79c519",
+      "meta_sha256": "3028ad412525f1008cdd4b8674f73c0f3a4dbba0f46cdd2c4716459007e8c95c",
+      "native_crs": "EPSG:4326",
+      "native_longitude_convention": "-180_to_180",
+      "object_etag": "\"1fdb2bec54c98aa65406e35d53068ccf-6921\"",
+      "object_size": 928896650902,
+      "product_id": "nsrdb-GOES-tmy-v4-0-0",
+      "request_count": 4,
+      "retrieved_at": "2026-09-24T23:11:32.424110+00:00",
+      "selector": "tdy-2023",
+      "selector_kind": "published_name",
+      "source_file_id": "GOES/tmy/v4.0.0/nsrdb_tdy-2023.h5",
+      "source_modified_at": "Mon, 16 Sep 2024 20:14:37 GMT",
+      "source_version": "4.0.1",
+      "stale": false,
+      "transferred_bytes": 264471862
+    }
+  ],
+  "schema_version": 1
+}

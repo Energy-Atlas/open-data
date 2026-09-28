@@ -1,0 +1,3 @@
+id,product_id,site_id,scope_kind,years,operating_start,operating_end,start_year,end_year,product_label,selected_month_years,scenario,model,member,grid,listed_years,variables,evidence_ids,evidence_basis,exclusions,weather_complete,probe_lat,probe_lon,probe_id,probe_name,probe_elevation,probe_standard_offset_minutes,source_etag
+cds:era5:catalog-interval,cds:era5,,actual,[],1940-01-01,2026-09-17,,,,,,,,,,[],"[""cds-era5""]",inventory,[],,,,,,,,
+cds:era5_land:catalog-interval,cds:era5_land,,actual,[],1950-01-01,2026-09-17,,,,,,,,,,[],"[""cds-land""]",inventory,[],,,,,,,,
