@@ -1,0 +1,7 @@
+# Text is stored with LF; data files are never altered.
+* text=auto eol=lf
+*.parquet binary
+*.geoparquet binary
+*.gz binary
+*.zip binary
+*.sqlite3 binary
