@@ -1,0 +1,43 @@
+{
+  "entries": [
+    {
+      "basis": "source_grid_sites",
+      "coordinate_count": 2170782,
+      "gates": [
+        "nsrdb:himawari7",
+        "nsrdb:himawari-tmy"
+      ],
+      "grid_identity": {
+        "also_gates_because": "himawari/himawari_tmy-2020.h5 has the same meta table: 2,170,782 rows of 119 bytes in 130 chunks of 16,806 rows, and 5 chunks spread over it are byte-identical to this table",
+        "checked_at": "2026-10-13T05:58:38.771079+00:00",
+        "object": "himawari/himawari_tmy-2020.h5",
+        "object_etag": "\"46aad2a15a8c412cce0269a1cb32eae1-7003\"",
+        "sampled_chunks": [
+          0,
+          32,
+          65,
+          97,
+          129
+        ]
+      },
+      "mask_path": "mask.json",
+      "mask_sha256": "8354a92ed82b4ecccc58a09765cf0764fc756c2b8ee12201bc9563f7c82d6816",
+      "meta_sha256": "92a4ed8995a5680fc694d8f3a95abf81147eefc63445e9ebb67b8ccb6d73ba6f",
+      "native_crs": "EPSG:4326",
+      "native_longitude_convention": "-180_to_180",
+      "object_etag": "\"c3ef6f173f4a894a9923276f2698fa04-8530\"",
+      "object_size": 286210056052,
+      "product_id": "himawari7",
+      "request_count": 8,
+      "retrieved_at": "2026-10-13T05:58:17.142157+00:00",
+      "selector": "2015",
+      "selector_kind": "actual_year",
+      "source_file_id": "himawari/himawari7/himawari7_irradiance_2015.h5",
+      "source_modified_at": "Fri, 30 Jul 2021 13:07:17 GMT",
+      "source_version": "3.1.1",
+      "stale": false,
+      "transferred_bytes": 261037396
+    }
+  ],
+  "schema_version": 1
+}

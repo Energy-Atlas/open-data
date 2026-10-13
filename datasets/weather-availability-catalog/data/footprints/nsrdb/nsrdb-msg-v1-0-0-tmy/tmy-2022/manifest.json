@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "basis": "source_grid_sites",
+      "coordinate_count": 2693287,
+      "gates": [
+        "nsrdb:nsrdb-msg-v1-0-0",
+        "nsrdb:nsrdb-msg-v1-0-0-tmy",
+        "nsrdb:nsrdb-msg-v1-0-0-tdy",
+        "nsrdb:nsrdb-msg-v1-0-0-tgy"
+      ],
+      "mask_path": "mask.json",
+      "mask_sha256": "256645d89d148a1abf2171c16d35b9843c0f0135915196a2e9e3378936bf4b07",
+      "meta_sha256": "55a3d5d35fba0e910b237aaaf987a390c61d0afa2c35132d8518701fdca96a2d",
+      "native_crs": "EPSG:4326",
+      "native_longitude_convention": "-180_to_180",
+      "object_etag": "\"769f064f95ccb939545254e7783e6262-2480\"",
+      "object_size": 1239523414882,
+      "product_id": "nsrdb-msg-v1-0-0-tmy",
+      "request_count": 5,
+      "retrieved_at": "2026-10-13T06:00:40.257384+00:00",
+      "selector": "tmy-2022",
+      "selector_kind": "published_name",
+      "source_file_id": "msg/v1.0.0/tmy/msg_tmy-2022.h5",
+      "source_modified_at": "Mon, 05 Feb 2024 16:42:47 GMT",
+      "source_version": "4.0.0",
+      "stale": false,
+      "transferred_bytes": 361577164
+    }
+  ],
+  "schema_version": 1
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "product_id": "reanalysis-era5-land",
+      "selector_kind": "land_sea_mask",
+      "selector": "lsm",
+      "basis": "land_fraction_at_least_0.5",
+      "source_file_id": "https://confluence.ecmwf.int/download/attachments/140385202/lsm_1279l4_0.1x0.1.grb",
+      "source_sha256": "4a790339465a8482c931e4ba6a13f75b633819493ef12d3b97b35cd19615539f",
+      "evidence_id": "era5land-lsm-r1",
+      "built_at": "2026-10-13T04:33:18.579762+00:00",
+      "native_crs": "EPSG:4326",
+      "native_longitude_convention": "0_to_360",
+      "grid_points": 6483600,
+      "land_points": 2195242,
+      "step_degrees": 0.1,
+      "cell_origin": "center",
+      "mask_path": "mask.json",
+      "mask_sha256": "a86d83076de9d4d3a72767849433b510f088df4364afb34a2847cd19031ae232",
+      "stale": false,
+      "gates": [
+        "cds:reanalysis-era5-land",
+        "openmeteo:era5_land"
+      ]
+    }
+  ]
+}

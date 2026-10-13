@@ -1,0 +1,29 @@
+{
+  "entries": [
+    {
+      "basis": "source_grid_sites",
+      "coordinate_count": 3869544,
+      "gates": [
+        "nsrdb:msg-iodc"
+      ],
+      "mask_path": "mask.json",
+      "mask_sha256": "0c83f35c15201d9a662514004af420464496061678d4ee594e7b0ac4b5b22037",
+      "meta_sha256": "a4d71df8c65072a878e0e9c0443601b0926bd7a899bb06f0508503708fd23cd3",
+      "native_crs": "EPSG:4326",
+      "native_longitude_convention": "-180_to_180",
+      "object_etag": "\"557168c55af3f90dc451972d803ed70f-7328\"",
+      "object_size": 983539943960,
+      "product_id": "msg-iodc",
+      "request_count": 13,
+      "retrieved_at": "2026-10-13T06:01:45.834994+00:00",
+      "selector": "2018",
+      "selector_kind": "actual_year",
+      "source_file_id": "meteosat/meteosat_irradiance_2018.h5",
+      "source_modified_at": "Mon, 10 Aug 2020 10:17:48 GMT",
+      "source_version": "",
+      "stale": false,
+      "transferred_bytes": 516484360
+    }
+  ],
+  "schema_version": 1
+}

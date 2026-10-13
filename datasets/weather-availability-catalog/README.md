@@ -13,9 +13,9 @@ a pinned URL and SHA-256; see openepw's `docs/deploy/render.md`).
 
 | | |
 |---|---|
-| Version | 2026.09.28 |
-| Sources read | 2026-09-23 to 2026-09-24 (UTC), per row in `data/sources.csv` |
-| Size | 44.1 MB in 29 files, the largest 12.2 MB |
+| Version | 2026.10.13 |
+| Sources read | 2026-09-23 to 2026-10-13 (UTC), per row in `data/sources.csv` |
+| Size | 87.5 MB in 38 files, the largest 31.2 MB |
 | Format | CSV (UTF-8, comma, header row) and JSON, described in `datapackage.json` |
 
 ## Files
@@ -24,20 +24,21 @@ One folder per provider, so each source's terms apply to its own files.
 
 | File | Rows | One row per |
 |---|---:|---|
-| `data/sources.csv` | 38 | evidence file or page read: URL, SHA-256, retrieval time, ETag |
+| `data/sources.csv` | 49 | evidence file or page read: URL, SHA-256, retrieval time, ETag |
 | `data/reviews.csv` | 61 | owner-reviewed OneBuilding location decision |
 | `data/noaa/products.csv` | 1 | product (NOAA ISD global-hourly) |
 | `data/noaa/sites.csv` | 29,508 | ISD station |
 | `data/noaa/entries.csv` | 16,513 | station with hourly records (years with data) |
 | `data/noaa/month-counts.csv` | 154,841 | station-year: hourly records per month |
-| `data/onebuilding/products.csv` | 21,653 | published EPW file (TMYx and others) |
-| `data/onebuilding/sites.csv` | 21,653 | location of that file |
-| `data/onebuilding/entries.csv` | 21,653 | typical-year reference period of that file |
+| `data/onebuilding/products.csv` | 72,747 | published EPW file (TMYx and others) |
+| `data/onebuilding/sites.csv` | 72,747 | location of that file |
+| `data/onebuilding/entries.csv` | 72,747 | typical-year reference period of that file |
 | `data/oedi/{products,sites,entries}.csv` | 2 / 4,736 / 9,472 | Argonne downscaled future weather, by grid site and scenario |
 | `data/cmip6/{products,entries}.csv` | 636 / 636 | CMIP6 model, scenario and member with its future window |
-| `data/nsrdb/{products,entries}.csv` | 4 / 36 | NSRDB products and their years or typical-year labels |
+| `data/nsrdb/{products,entries}.csv` | 12 / 65 | NSRDB products and their years or typical-year labels |
 | `data/cds`, `data/openmeteo`, `data/pvgis` | 1-2 each | gridded products and their periods |
-| `data/footprints/nsrdb/.../mask.json` | | NSRDB typical-year coverage mask with its manifest |
+| `data/footprints/nsrdb/.../mask.json` | | NSRDB coverage masks (0.25° grid-site cells) for GOES, Himawari, Meteosat and Meteosat IODC, each with its manifest |
+| `data/footprints/cds/reanalysis-era5-land/lsm/mask.json` | | ERA5-Land land mask (0.1° points with land fraction ≥ 0.5, row runs) with its manifest |
 
 Every CSV has a `sites.csv` and `entries.csv`, even when empty, so each provider looks the
 same. Column meanings, types and keys are in `datapackage.json`.
@@ -61,9 +62,10 @@ Checked 2026-09-28. Cite the original sources, not only this repository.
 | Provider | What is used here | Terms | Attribution |
 |---|---|---|---|
 | NOAA NCEI | ISD `isd-history.csv` (stations) and `isd-inventory.csv` (record counts) | US Government work; no copyright restrictions on the metadata. Some non-US ISD *observations* carry WMO Resolution 40 limits; no observations are included here. | NOAA National Centers for Environmental Information, Integrated Surface Database |
-| OneBuilding | Published EPW catalog pages and the location spreadsheets on climate.onebuilding.org | **Unclear.** The site offers the files for download and asks for citation, but its footer reads all rights reserved and it grants no general redistribution licence. Published here by owner decision (2026-09-28); see Known limits. | climate.onebuilding.org (Lawrie and Crawley) |
-| NLR NSRDB | Product list and years from the NSRDB data query API | Offered publicly without charge; no formal licence stated. | National Solar Radiation Database, National Laboratory of the Rockies (formerly NREL) |
+| OneBuilding | Published EPW catalog pages and the TMYx location spreadsheets of every WMO region on climate.onebuilding.org | **Unclear.** The site offers the files for download and asks for citation, but its footer reads all rights reserved and it grants no general redistribution licence. Published here by owner decision (2026-09-28, extended to all regions 2026-10-13); see Known limits. | climate.onebuilding.org (Lawrie and Crawley) |
+| NLR NSRDB | Product list and years from the NSRDB data query API at five points (Ithaca, Phoenix, Singapore, Nairobi, London) | Offered publicly without charge; no formal licence stated. | National Solar Radiation Database, National Laboratory of the Rockies (formerly NREL) |
 | Copernicus CDS | ERA5 and ERA5-Land catalogue records | CC BY 4.0, as declared in the collection records | Contains modified Copernicus Climate Change Service information 2026 |
+| ECMWF (ERA5-Land) | The ERA5-Land land-sea mask published with the ERA5-Land data documentation, reduced to a land mask | ERA5-Land is CC BY 4.0 (CDS collection record); the documentation page states no separate licence | Contains modified Copernicus Climate Change Service information 2026 |
 | Open-Meteo | Historical weather API documentation | API data under CC BY 4.0 | Weather data by Open-Meteo.com |
 | PVGIS (EC JRC) | One typical-year probe (London) | Free for public use if the source is acknowledged | PVGIS © European Communities, 2001-2026 |
 | CMIP6 (WCRP) | Pangeo CMIP6 catalog and the WCRP source-id licence registry | Per model: CC BY 4.0 (596 products) or CC0 1.0 (40), in `license_effective` | The modelling group of each `source_id`, and WCRP CMIP6 |
@@ -76,9 +78,18 @@ The `datapackage.json` `licenses` list summarises these; the table above is auth
 openepw's Stage 1 importer read each source listed in `data/sources.csv`, kept its SHA-256
 and HTTP validators, and recorded only what the source states: published coordinates and
 names, listed years and record counts, published file names. OneBuilding locations that
-could not be matched to a station were reviewed by the owner (`data/reviews.csv`). The
+could not be matched to a station were reviewed by the owner (`data/reviews.csv`).
+
+Version 2026.10.13 adds:
+- **OneBuilding:** every TMYx file listed in the ten regional location spreadsheets, with the
+  coordinates published there (51,094 more files).
+- **NSRDB:** three more data-query points, and coverage masks for Himawari, Meteosat and Meteosat IODC from each satellite's published grid table.
+- **ERA5-Land:** a land mask from ECMWF's land-sea mask (land fraction ≥ 0.5, decoded from GRIB).
+
+The requests, checks and limits are in openepw's
+`docs/validation/availability-coverage-2026-10-13/README.md`. The
 export is lossless: importing it rebuilds the same catalog record for record, which was
-checked on this release (all 38 sources, 22,301 products, 55,897 sites, 48,315 entries and
+checked on this release (all 49 sources, 73,403 products, 106,991 sites, 99,438 entries and
 61 reviews identical, footprints byte-identical).
 
 ## Known limits
@@ -92,6 +103,12 @@ checked on this release (all 38 sources, 22,301 products, 55,897 sites, 48,315 e
   explicitly. If OneBuilding asks, remove `data/onebuilding/` and `data/reviews.csv` in a
   new version. This repository's rule to leave out sources with unclear terms was
   overridden by the owner for this release.
+- **The ERA5-Land mask is a land-fraction threshold, not ERA5-Land's own data mask.**
+  ERA5-Land has values over lakes and at some coastal points whose land fraction is below
+  0.5. Those places are near the mask's edge or outside it.
+- **NSRDB masks summarise grid sites, not years.** A mask shows where a satellite's grid
+  has sites. The years and typical-year files available there come from the five probed
+  points.
 - No weather observations or EPW files are included; download them from each provider
   under its own terms.
 
@@ -100,3 +117,4 @@ checked on this release (all 38 sources, 22,301 products, 55,897 sites, 48,315 e
 | Version | Date | Changes |
 |---|---|---|
 | 2026.09.28 | 2026-09-28 | First release, from openepw catalog generation `0a09bde8`. |
+| 2026.10.13 | 2026-10-13 | OneBuilding TMYx files of every WMO region, NSRDB probes at Singapore, Nairobi and London with Himawari, Meteosat and IODC coverage masks, the ERA5-Land land mask. |

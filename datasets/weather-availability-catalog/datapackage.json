@@ -1,7 +1,7 @@
 {
   "profile": "tabular-data-package",
   "name": "weather-availability-catalog",
-  "version": "2026.09.28",
+  "version": "2026.10.13",
   "title": "Weather availability catalog",
   "description": "Which weather products (station records, typical-year files, reanalysis, climate projections) are available where and for which years, with the evidence each statement rests on. Metadata only: no weather data. Exported from the openepw availability catalog.",
   "homepage": "https://github.com/Energy-Atlas/open-data/tree/main/datasets/weather-availability-catalog",
@@ -39,6 +39,10 @@
       "path": "https://cds.climate.copernicus.eu/"
     },
     {
+      "title": "ECMWF ERA5-Land land-sea mask (ERA5-Land data documentation)",
+      "path": "https://confluence.ecmwf.int/display/CKB/ERA5-Land%3A+data+documentation"
+    },
+    {
       "title": "Open-Meteo historical weather API",
       "path": "https://open-meteo.com/en/docs/historical-weather-api"
     },
@@ -64,8 +68,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 9647,
-      "hash": "sha256:57b5ca3ac8966c3f304780eb47f1918218e559b25d19b9f46020ad22d9aa7d84",
+      "bytes": 12594,
+      "hash": "sha256:75472793e9b9c35539687e1b563c08f59d7c0830819d786b68446b2a22e1d298",
       "schema": {
         "fields": [
           {
@@ -1537,8 +1541,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 1905,
-      "hash": "sha256:cb2ae90708b5204699962fb56971f4a5feee1ff823dc05d08715164f0b893e68",
+      "bytes": 5153,
+      "hash": "sha256:3299cc014300f3fe68179882ba9687eff6e2ed8686a030db4f44188383065d25",
       "schema": {
         "fields": [
           {
@@ -1768,8 +1772,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 6188,
-      "hash": "sha256:b547d346aa224ec7349c30a51088afc700747600f142b254ae22831baa65727b",
+      "bytes": 11415,
+      "hash": "sha256:85e74364b24b0f64fba73ebfc3fca8feb0b3cd22c6af954da46dde4ed51423a9",
       "schema": {
         "fields": [
           {
@@ -2341,8 +2345,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 10304508,
-      "hash": "sha256:2c59de2deed580df94133ce2cd5be254dcbf54349fae4226c906dbcf8f4fed37",
+      "bytes": 31161358,
+      "hash": "sha256:35be104bc6e7e8304d25a9738b728bcdbb42a49946d158f69a5e46943f968524",
       "schema": {
         "fields": [
           {
@@ -2481,8 +2485,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 4606582,
-      "hash": "sha256:815a3df4274af70abe8f482d62226686bf13bb712c8cf415a332ee88a2243921",
+      "bytes": 12643707,
+      "hash": "sha256:6455efb8f45df5a190c88d91cac182adb81c7032f6c3f2923dec2993bfdb7421",
       "schema": {
         "fields": [
           {
@@ -2572,8 +2576,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 5683739,
-      "hash": "sha256:5e13a89f82bb40e51b7fcdcb44e7ee81b4caef597240e7aea24c2a30d2eaea56",
+      "bytes": 17393216,
+      "hash": "sha256:1cb91f969a29f6fc7a4fdf1cf6d680c8b0cbcb91d6153b769d088d7aefef0c62",
       "schema": {
         "fields": [
           {
@@ -3541,6 +3545,54 @@
       }
     },
     {
+      "name": "data-footprints-cds-reanalysis-era5-land-lsm-manifest.json",
+      "path": "data/footprints/cds/reanalysis-era5-land/lsm/manifest.json",
+      "format": "json",
+      "mediatype": "application/json",
+      "bytes": 967,
+      "hash": "sha256:ab3bb050ca79c4d707b6b0d650bb032cc4fb1a6c2e9f0edbcade403f5ad9a315"
+    },
+    {
+      "name": "data-footprints-cds-reanalysis-era5-land-lsm-mask.json",
+      "path": "data/footprints/cds/reanalysis-era5-land/lsm/mask.json",
+      "format": "json",
+      "mediatype": "application/json",
+      "bytes": 273443,
+      "hash": "sha256:a86d83076de9d4d3a72767849433b510f088df4364afb34a2847cd19031ae232"
+    },
+    {
+      "name": "data-footprints-nsrdb-himawari7-2015-manifest.json",
+      "path": "data/footprints/nsrdb/himawari7/2015/manifest.json",
+      "format": "json",
+      "mediatype": "application/json",
+      "bytes": 1582,
+      "hash": "sha256:8a217b684d9b8da8fbdb75ed876d7700ed279ab6c3974c2e60d22006b4940a8c"
+    },
+    {
+      "name": "data-footprints-nsrdb-himawari7-2015-mask.json",
+      "path": "data/footprints/nsrdb/himawari7/2015/mask.json",
+      "format": "json",
+      "mediatype": "application/json",
+      "bytes": 651453,
+      "hash": "sha256:8354a92ed82b4ecccc58a09765cf0764fc756c2b8ee12201bc9563f7c82d6816"
+    },
+    {
+      "name": "data-footprints-nsrdb-msg-iodc-2018-manifest.json",
+      "path": "data/footprints/nsrdb/msg-iodc/2018/manifest.json",
+      "format": "json",
+      "mediatype": "application/json",
+      "bytes": 968,
+      "hash": "sha256:37644c9a934657aeb08af896867e5ef73412240bf2798827f63b33fda2539e9e"
+    },
+    {
+      "name": "data-footprints-nsrdb-msg-iodc-2018-mask.json",
+      "path": "data/footprints/nsrdb/msg-iodc/2018/mask.json",
+      "format": "json",
+      "mediatype": "application/json",
+      "bytes": 1038610,
+      "hash": "sha256:0c83f35c15201d9a662514004af420464496061678d4ee594e7b0ac4b5b22037"
+    },
+    {
       "name": "data-footprints-nsrdb-nsrdb-goes-tmy-v4-0-0-tdy-2023-manifest.json",
       "path": "data/footprints/nsrdb/nsrdb-GOES-tmy-v4-0-0/tdy-2023/manifest.json",
       "format": "json",
@@ -3555,6 +3607,22 @@
       "mediatype": "application/json",
       "bytes": 535961,
       "hash": "sha256:0410d124c6c9ea413471b4dad6b93266e216587bf73d0e9f9d34ca018d79c519"
+    },
+    {
+      "name": "data-footprints-nsrdb-nsrdb-msg-v1-0-0-tmy-tmy-2022-manifest.json",
+      "path": "data/footprints/nsrdb/nsrdb-msg-v1-0-0-tmy/tmy-2022/manifest.json",
+      "format": "json",
+      "mediatype": "application/json",
+      "bytes": 1108,
+      "hash": "sha256:7c74e40b3837a2f6f76a9c285ee2f8c7c3da8f636a2b0ab577514e2b06d1a726"
+    },
+    {
+      "name": "data-footprints-nsrdb-nsrdb-msg-v1-0-0-tmy-tmy-2022-mask.json",
+      "path": "data/footprints/nsrdb/nsrdb-msg-v1-0-0-tmy/tmy-2022/mask.json",
+      "format": "json",
+      "mediatype": "application/json",
+      "bytes": 708951,
+      "hash": "sha256:256645d89d148a1abf2171c16d35b9843c0f0135915196a2e9e3378936bf4b07"
     }
   ]
 }
