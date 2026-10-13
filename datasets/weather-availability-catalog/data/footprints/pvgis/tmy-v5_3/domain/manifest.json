@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "product_id": "pvgis-tmy-v5_3",
+      "selector_kind": "documented_domain",
+      "selector": "domain",
+      "basis": "ERA5-Land land fraction >= 0.5 between -59.9 and 74.9 (inside); ocean-connected water > 50 km from any land fraction, or beyond -60.5 / 75.5 (outside); edge_runs between",
+      "source_file_id": "https://confluence.ecmwf.int/download/attachments/140385202/lsm_1279l4_0.1x0.1.grb",
+      "source_sha256": "4a790339465a8482c931e4ba6a13f75b633819493ef12d3b97b35cd19615539f",
+      "evidence_id": "era5land-lsm-r1",
+      "station_evidence": {
+        "sources": [
+          "noaa-history",
+          "onebuilding-au-coordinate-xlsx",
+          "onebuilding-normals-coordinate-xlsx",
+          "onebuilding-region1-xlsx",
+          "onebuilding-region2-6-russia-xlsx",
+          "onebuilding-region2-xlsx",
+          "onebuilding-region3-xlsx",
+          "onebuilding-region4-canada-xlsx",
+          "onebuilding-region4-caribbean-xlsx",
+          "onebuilding-region7-xlsx",
+          "onebuilding-tmy3-coordinate-xlsx",
+          "onebuilding-uk-xlsx",
+          "onebuilding-us-xlsx"
+        ],
+        "points": 100730,
+        "analysis_sha256": "0c1574d15d2927f8240e13643d300590d5863f01c736dbc5fa5c878cc7882244"
+      },
+      "documentation": "JRC139355, PVGIS 5.3 Dataset Update (2024), Table 1 and sections 3.1-3.2",
+      "checked_by": [
+        "pvgis-london",
+        "pvgis-ithaca",
+        "pvgis-atlantic",
+        "pvgis-northsea-r1",
+        "pvgis-svalbard",
+        "pvgis-lake-victoria"
+      ],
+      "built_at": "2026-10-13T10:57:00.545381+00:00",
+      "native_crs": "EPSG:4326",
+      "native_longitude_convention": "0_to_360",
+      "grid_points": 6483600,
+      "inside_points": 1461075,
+      "edge_points": 367808,
+      "step_degrees": 0.1,
+      "cell_origin": "center",
+      "mask_path": "mask.json",
+      "mask_sha256": "78c3ecadd04d3a70a68938be12e864fc162307b628b7833ff4ac657808a85703",
+      "stale": false,
+      "gates": [
+        "pvgis:PVGIS TMY"
+      ]
+    }
+  ]
+}

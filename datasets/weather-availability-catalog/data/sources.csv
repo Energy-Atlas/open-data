@@ -47,4 +47,6 @@ onebuilding-us,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_Am
 onebuilding-us-xlsx,https://climate.onebuilding.org/sources/Region4_USA_TMYx_EPW_Processing_locations.xlsx,cc336b22990f2d7937a3af0a578d475559f7a8ca79ae20d3bd1692afecfdfb93,2026-09-24T01:53:02.468731Z,,inventory,"Tue, 22 Sep 2026 19:31:29 GMT","""1905d1-65c1769c84640""",,,,
 openmeteo-doc,https://open-meteo.com/en/docs/historical-weather-api,36adebc254643de94cb1fd67c1f4dad008d8932700602051684346c04790bb0d,2026-09-23T23:32:57.907903Z,,documentation,"Wed, 23 Sep 2026 23:32:58 GMT",,,,,
 pvgis-doc,https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis/using-pvgis-5/api-non-interactive-service_en,fb666936c27f452499c09c62765af72b4cd9684e0b40af3bace762ae0545e2bf,2026-09-23T23:32:58.391829Z,,documentation,,,,,,
+pvgis-ithaca,https://re.jrc.ec.europa.eu/api/v5_3/tmy,ce682e44c33365fe9d4842c79456f8f32361cf5b416a4d063ac78b9fa2c47a0b,2026-10-13T10:37:58.520331Z,,targeted_probe,,,,,,
+pvgis-lake-victoria,https://re.jrc.ec.europa.eu/api/v5_3/tmy,138f2e2cac1c4573ec81e3c320405950284a5b9a6df885ce9d4f30f27f31e40b,2026-10-13T10:38:36.559413Z,,targeted_probe,,,,,,
 pvgis-london,https://re.jrc.ec.europa.eu/api/v5_3/tmy,a5bd6fac7a5673a7dd74572e0afa582135d6ee84acdbeab0ce56fd21832ff9e2,2026-09-23T23:37:20.797018Z,,targeted_probe,,,,,,

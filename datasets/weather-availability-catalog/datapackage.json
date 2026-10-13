@@ -1,7 +1,7 @@
 {
   "profile": "tabular-data-package",
   "name": "weather-availability-catalog",
-  "version": "2026.10.13",
+  "version": "2026.10.13.1",
   "title": "Weather availability catalog",
   "description": "Which weather products (station records, typical-year files, reanalysis, climate projections) are available where and for which years, with the evidence each statement rests on. Metadata only: no weather data. Exported from the openepw availability catalog.",
   "homepage": "https://github.com/Energy-Atlas/open-data/tree/main/datasets/weather-availability-catalog",
@@ -68,8 +68,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 12594,
-      "hash": "sha256:75472793e9b9c35539687e1b563c08f59d7c0830819d786b68446b2a22e1d298",
+      "bytes": 12939,
+      "hash": "sha256:9ce10cab7807fcde028d60639370d4f0cd2411520d92e3e2ec4c5ee1151b32cc",
       "schema": {
         "fields": [
           {
@@ -3149,8 +3149,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 720,
-      "hash": "sha256:909063e2ba2fef145f4f6f54e1d36bc19b316d616750e7dbdab1fb3af4af9557",
+      "bytes": 761,
+      "hash": "sha256:e796f9692cff0a25ea77aaccb8dc0a1cd8f3a62b56605c49fbd28cda3e6b7a9b",
       "schema": {
         "fields": [
           {
@@ -3380,8 +3380,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 628,
-      "hash": "sha256:c9002ad9c8e4849f0c2566842e1c0d71e03db72f153b166976aa6381347a0381",
+      "bytes": 1446,
+      "hash": "sha256:d6c13fb7ec1b252cdfa4cc634106f77102d3e0513f68914c628758c65fee390e",
       "schema": {
         "fields": [
           {
@@ -3623,6 +3623,22 @@
       "mediatype": "application/json",
       "bytes": 708951,
       "hash": "sha256:256645d89d148a1abf2171c16d35b9843c0f0135915196a2e9e3378936bf4b07"
+    },
+    {
+      "name": "data-footprints-pvgis-tmy-v5_3-domain-manifest.json",
+      "path": "data/footprints/pvgis/tmy-v5_3/domain/manifest.json",
+      "format": "json",
+      "mediatype": "application/json",
+      "bytes": 2130,
+      "hash": "sha256:8c4d21213bd87b3e215f6f280c81cfcdc9590a01a710735a96eed5601a8bbb52"
+    },
+    {
+      "name": "data-footprints-pvgis-tmy-v5_3-domain-mask.json",
+      "path": "data/footprints/pvgis/tmy-v5_3/domain/mask.json",
+      "format": "json",
+      "mediatype": "application/json",
+      "bytes": 703422,
+      "hash": "sha256:78c3ecadd04d3a70a68938be12e864fc162307b628b7833ff4ac657808a85703"
     }
   ]
 }
