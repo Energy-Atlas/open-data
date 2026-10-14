@@ -1,7 +1,7 @@
 {
   "profile": "tabular-data-package",
   "name": "weather-availability-catalog",
-  "version": "2026.10.13.1",
+  "version": "2026.10.13.2",
   "title": "Weather availability catalog",
   "description": "Which weather products (station records, typical-year files, reanalysis, climate projections) are available where and for which years, with the evidence each statement rests on. Metadata only: no weather data. Exported from the openepw availability catalog.",
   "homepage": "https://github.com/Energy-Atlas/open-data/tree/main/datasets/weather-availability-catalog",
@@ -68,8 +68,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 12939,
-      "hash": "sha256:9ce10cab7807fcde028d60639370d4f0cd2411520d92e3e2ec4c5ee1151b32cc",
+      "bytes": 17749,
+      "hash": "sha256:9e87433fcdb674c836114d1141a1bbd9e2ddf665ea29b7ecef7f42497931740f",
       "schema": {
         "fields": [
           {
@@ -1541,8 +1541,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 5153,
-      "hash": "sha256:3299cc014300f3fe68179882ba9687eff6e2ed8686a030db4f44188383065d25",
+      "bytes": 5802,
+      "hash": "sha256:b3548788c253deee5e92d6c875d7e23d199106adac62b710397662f8b3979cb0",
       "schema": {
         "fields": [
           {
@@ -1772,8 +1772,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 11415,
-      "hash": "sha256:85e74364b24b0f64fba73ebfc3fca8feb0b3cd22c6af954da46dde4ed51423a9",
+      "bytes": 38067,
+      "hash": "sha256:bf209e42d1bf6f573648d06c2098345bf99a2eeb8d57a43e1eafc58bcf564a5b",
       "schema": {
         "fields": [
           {
@@ -3545,20 +3545,20 @@
       }
     },
     {
-      "name": "data-footprints-cds-reanalysis-era5-land-lsm-manifest.json",
-      "path": "data/footprints/cds/reanalysis-era5-land/lsm/manifest.json",
+      "name": "data-footprints-cds-reanalysis-era5-land-present-t2m-manifest.json",
+      "path": "data/footprints/cds/reanalysis-era5-land/present-t2m/manifest.json",
       "format": "json",
       "mediatype": "application/json",
-      "bytes": 967,
-      "hash": "sha256:ab3bb050ca79c4d707b6b0d650bb032cc4fb1a6c2e9f0edbcade403f5ad9a315"
+      "bytes": 995,
+      "hash": "sha256:8ce53dd2f728cd92c3bfc51639d6e284692289d7d8717c16898d27083310038c"
     },
     {
-      "name": "data-footprints-cds-reanalysis-era5-land-lsm-mask.json",
-      "path": "data/footprints/cds/reanalysis-era5-land/lsm/mask.json",
+      "name": "data-footprints-cds-reanalysis-era5-land-present-t2m-mask.json",
+      "path": "data/footprints/cds/reanalysis-era5-land/present-t2m/mask.json",
       "format": "json",
       "mediatype": "application/json",
-      "bytes": 273443,
-      "hash": "sha256:a86d83076de9d4d3a72767849433b510f088df4364afb34a2847cd19031ae232"
+      "bytes": 252747,
+      "hash": "sha256:50e590b50fa0616b5488caad926febdd86e490dc0e65be68b4f1064b2ce8cf60"
     },
     {
       "name": "data-footprints-nsrdb-himawari7-2015-manifest.json",

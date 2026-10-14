@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "product_id": "reanalysis-era5-land",
+      "selector_kind": "values_present",
+      "selector": "present-t2m",
+      "basis": "grid points with a 2m_temperature value",
+      "source_file_id": "CDS reanalysis-era5-land, 2m_temperature, 2020-01-01 00:00, GRIB (request C1)",
+      "source_sha256": "b1c2c41d5157b3b0700d97e96a73329e3b1a62befc0dded474fb392ad9ebdea2",
+      "evidence_id": "c1-era5land-t2m-2020010100",
+      "built_at": "2026-10-14T00:59:47.001363+00:00",
+      "native_crs": "EPSG:4326",
+      "native_longitude_convention": "0_to_360",
+      "grid_points": 6483600,
+      "land_points": 2212863,
+      "step_degrees": 0.1,
+      "cell_origin": "center",
+      "mask_path": "mask.json",
+      "mask_sha256": "50e590b50fa0616b5488caad926febdd86e490dc0e65be68b4f1064b2ce8cf60",
+      "stale": false,
+      "gates": [
+        "cds:reanalysis-era5-land",
+        "openmeteo:era5_land"
+      ]
+    }
+  ]
+}
