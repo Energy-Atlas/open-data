@@ -13,9 +13,9 @@ a pinned URL and SHA-256; see openepw's `docs/deploy/render.md`).
 
 | | |
 |---|---|
-| Version | 2026.10.13.2 |
-| Sources read | 2026-09-23 to 2026-10-13 (UTC), per row in `data/sources.csv` |
-| Size | 88.2 MB in 39 files, the largest 31.2 MB |
+| Version | 2026.10.27 |
+| Sources read | 2026-09-23 to 2026-10-27 (UTC), per row in `data/sources.csv` |
+| Size | 92.9 MB in 39 files, the largest 32.7 MB |
 | Format | CSV (UTF-8, comma, header row) and JSON, described in `datapackage.json` |
 
 ## Files
@@ -24,22 +24,22 @@ One folder per provider, so each source's terms apply to its own files.
 
 | File | Rows | One row per |
 |---|---:|---|
-| `data/sources.csv` | 70 | evidence file or page read: URL, SHA-256, retrieval time, ETag |
+| `data/sources.csv` | 103 | evidence file or page read: URL, SHA-256, retrieval time, ETag |
 | `data/reviews.csv` | 61 | owner-reviewed OneBuilding location decision |
 | `data/noaa/products.csv` | 1 | product (NOAA ISD global-hourly) |
 | `data/noaa/sites.csv` | 29,508 | ISD station |
 | `data/noaa/entries.csv` | 16,513 | station with hourly records (years with data) |
 | `data/noaa/month-counts.csv` | 154,841 | station-year: hourly records per month |
-| `data/onebuilding/products.csv` | 72,747 | published EPW file (TMYx and others) |
-| `data/onebuilding/sites.csv` | 72,747 | location of that file |
-| `data/onebuilding/entries.csv` | 72,747 | typical-year reference period of that file |
+| `data/onebuilding/products.csv` | 76,375 | published EPW file (TMYx, national and special typical years) |
+| `data/onebuilding/sites.csv` | 76,375 | location of that file |
+| `data/onebuilding/entries.csv` | 76,375 | typical-year reference period of that file |
 | `data/oedi/{products,sites,entries}.csv` | 2 / 4,736 / 9,472 | Argonne downscaled future weather, by grid site and scenario |
 | `data/cmip6/{products,entries}.csv` | 636 / 636 | CMIP6 model, scenario and member with its future window |
-| `data/nsrdb/{products,entries}.csv` | 14 / 207 | NSRDB products and their years or typical-year labels, per probe and, where every probe agrees, documented for the whole mask |
+| `data/nsrdb/{products,entries}.csv` | 14 / 208 | NSRDB products and their years or typical-year labels, per probe and, where every probe agrees, documented for the whole mask |
 | `data/cds`, `data/openmeteo`, `data/pvgis` | 1-4 each | gridded products and their periods; PVGIS has one entry per probe and one documented period |
-| `data/footprints/nsrdb/.../mask.json` | | NSRDB coverage masks (0.25° grid-site cells) for GOES, Himawari, Meteosat and Meteosat IODC, each with its manifest |
+| `data/footprints/nsrdb/.../mask.json` | | NSRDB coverage masks (0.25° grid-site cells) for GOES, Himawari (gating Himawari-7, Himawari-8 and Himawari TMY), Meteosat and Meteosat IODC, each with its manifest |
 | `data/footprints/cds/reanalysis-era5-land/present-t2m/mask.json` | | ERA5-Land mask: the 0.1° points where ERA5-Land has a value (row runs), with its manifest |
-| `data/footprints/pvgis/tmy-v5_3/domain/mask.json` | | PVGIS 5.3 TMY domain (0.1° row runs: `runs` inside, `edge_runs` unknown, the rest outside) with its manifest |
+| `data/footprints/pvgis/tmy-v5_3/domain/mask.json` | | PVGIS 5.3 TMY domain (0.1° row runs: `runs` inside, `edge_runs` unknown, the rest outside; `refine`: 0.0125° cells of the unknown band that are inside, on Natural Earth land) with its manifest |
 
 Every CSV has a `sites.csv` and `entries.csv`, even when empty, so each provider looks the
 same. Column meanings, types and keys are in `datapackage.json`.
@@ -58,17 +58,18 @@ precision. `entries.csv` covers three kinds of scope, given in `scope_kind`:
 
 ## Sources, terms and attribution
 
-Checked 2026-09-28; PVGIS rechecked 2026-10-13 on its data-download page. Cite the original sources, not only this repository.
+Checked 2026-09-28; PVGIS rechecked 2026-10-13 on its data-download page; OneBuilding families and Natural Earth checked 2026-10-27. Cite the original sources, not only this repository.
 
 | Provider | What is used here | Terms | Attribution |
 |---|---|---|---|
 | NOAA NCEI | ISD `isd-history.csv` (stations) and `isd-inventory.csv` (record counts) | US Government work; no copyright restrictions on the metadata. Some non-US ISD *observations* carry WMO Resolution 40 limits; no observations are included here. | NOAA National Centers for Environmental Information, Integrated Surface Database |
-| OneBuilding | Published EPW catalog pages and the TMYx location spreadsheets of every WMO region on climate.onebuilding.org | **Unclear.** The site offers the files for download and asks for citation, but its footer reads all rights reserved and it grants no general redistribution licence. Published here by owner decision (2026-09-28, extended to all regions 2026-10-13); see Known limits. | climate.onebuilding.org (Lawrie and Crawley) |
-| NLR NSRDB | Product list and years from the NSRDB data query API at 15 points, and the documented years of nine dataset pages | Offered publicly without charge; no formal licence stated. | National Solar Radiation Database, National Laboratory of the Rockies (formerly NREL) |
+| OneBuilding | Published EPW catalog pages, the TMYx location spreadsheets of every WMO region, and the spreadsheets of 17 national and special typical-year families on climate.onebuilding.org | **Unclear.** The site offers the files for download and asks for citation, but its footer reads all rights reserved and it grants no general redistribution licence. Published here by owner decision (2026-09-28, extended to all regions 2026-10-13 and to the national and special families 2026-10-27). Families whose originators restrict their files are left out (ISHRAE; CSWD and RMY, whose terms checks did not clear them); see Known limits. | climate.onebuilding.org (Lawrie and Crawley), and each family's originator |
+| NLR NSRDB | Product list and years from the NSRDB data query API at 15 points, and the documented years of ten dataset pages | Offered publicly without charge; no formal licence stated. | National Solar Radiation Database, National Laboratory of the Rockies (formerly NREL) |
 | Copernicus CDS | ERA5 and ERA5-Land catalogue records | CC BY 4.0, as declared in the collection records | Contains modified Copernicus Climate Change Service information 2026 |
 | ECMWF / Copernicus (ERA5-Land) | The ERA5-Land land-sea mask (used for the PVGIS domain), and one ERA5-Land 2 m temperature field from CDS reduced to the points with values | CC BY 4.0 (CDS collection record) | Contains modified Copernicus Climate Change Service information 2026 |
 | Open-Meteo | Historical weather API documentation | API data under CC BY 4.0 | Weather data by Open-Meteo.com |
-| PVGIS (EC JRC) | Six typical-year requests: three answered (London, Ithaca, Lake Victoria) and three refused as sea (open Atlantic, North Sea, Svalbard); the PVGIS 5.3 dataset report (JRC139355) for the documented domain | Free for public use if the source is acknowledged | PVGIS © European Communities, 2001-2026 |
+| Natural Earth | 1:10m land polygons, for coastal PVGIS points | Public domain | Made with Natural Earth |
+| PVGIS (EC JRC) | Eight typical-year requests: five answered (London, Ithaca, Lake Victoria, Cape Town, Table Bay about 4 km offshore) and three refused as sea (open Atlantic, North Sea, Svalbard); the PVGIS 5.3 dataset report (JRC139355) for the documented domain | Free for public use if the source is acknowledged | PVGIS © European Communities, 2001-2026 |
 | CMIP6 (WCRP) | Pangeo CMIP6 catalog and the WCRP source-id licence registry | Per model: CC BY 4.0 (596 products) or CC0 1.0 (40), in `license_effective` | The modelling group of each `source_id`, and WCRP CMIP6 |
 | OEDI 5974 (Argonne) | Site table and file directories of the downscaled future weather dataset | CC BY 4.0 | Zeng, Kim, Wang and Muehleisen, Argonne National Laboratory, doi:10.25984/2202668 |
 
@@ -98,6 +99,22 @@ Version 2026.10.13.1 adds:
 - **Probe evidence:** two probes that returned a TMY (Ithaca with ERA5 radiation, Lake
   Victoria with SARAH3).
 
+Version 2026.10.27 adds:
+- **OneBuilding national and special families:** 3,628 more files with their published
+  coordinates: CWEC (2,262), INMET and TRY (429), NORCERRA (358), JGMY (157, synthetic:
+  statistically generated), CTZ, CTZ v2 and CTZ2010, TurTMY, IMGW, PHIKO, NIWA, ArgTMY, AMTUes,
+  IMS, CityUHK, and the historical files of NIWA2024 and BBSR. One file per family was
+  downloaded and read. Future-climate files are left out; MetEireann (bare `.epw` links),
+  CTZ2016, CTZ2022, CTZ2025 and LuxTMY (published paths return 404) and ITMY (not a valid EPW)
+  are left out too.
+- **NSRDB Himawari-8 (2016–2020):** catalogued as downloadable; openepw re-bins its hourly
+  samples' irradiance to EPW hours. The Himawari coverage mask gates it.
+- **PVGIS coasts:** inside the mask's unknown band, a point at least about 1.4 km inland on Natural
+  Earth land is inside; probes at Cape Town and in Table Bay returned a TMY.
+- **ERA5:** ECMWF's documentation of the regular grid with values at the poles.
+- **TMY spreadsheet:** 9 TMY files of the US index gain its published coordinates (4 of them
+  keep their owner-reviewed approximate localities in `data/reviews.csv`).
+
 Version 2026.10.13.2 adds:
 - **NSRDB:**
   - data-query probes at ten grid edges, from Honolulu to Almaty;
@@ -110,9 +127,10 @@ Version 2026.10.13.2 adds:
 
 The requests, checks and limits are in openepw's
 `docs/validation/availability-coverage-2026-10-13/README.md` and, for 2026.10.13.1,
-`docs/validation/availability-gaps-2026-10-13/README.md`. The export is lossless: importing it
-rebuilds the same catalog record for record. This was checked on this release: all 70
-sources, 73,405 products, 106,991 sites, 99,583 entries and 61 reviews are identical, and the
+`docs/validation/availability-gaps-2026-10-13/README.md`; for 2026.10.27, the availability gaps
+plan in `docs/superpowers/plans/2026-10-13-availability-gaps.md`. The export is lossless: importing it
+rebuilds the same catalog record for record. This was checked on this release: all 103
+sources, 77,033 products, 110,619 sites, 103,214 entries and 61 reviews are identical, and the
 12 footprint files are byte-identical.
 
 ## Known limits
@@ -137,10 +155,14 @@ sources, 73,405 products, 106,991 sites, 99,583 entries and 61 reviews are ident
 - **The PVGIS domain mask is documented and spot-checked, not a PVGIS raster.**
   - PVGIS uses its own coastline. JRC documents a 25 km sea zone, but a point about 19 km off
     the Dutch coast was refused.
-  - So coastal points whose nearest 0.1° cell is mostly water stay unknown. This is 17% of
-    published station positions inside 60° S–75° N, including Cape Town, Rio de Janeiro,
-    Singapore and Honolulu.
-  - Lakes stay unknown too, although Lake Victoria was served.
+  - So coastal points whose nearest 0.1° cell is mostly water are unknown unless they are about
+    1.4 km inland on Natural Earth land: 13.7% of published station positions inside 60° S–75° N
+    (16.6% before), including Rio de Janeiro, Singapore and Lisbon. Cape Town and Honolulu are now
+    inside. Near-shore sea stays unknown: Table Bay, 4 km offshore, was served.
+  - Lakes in the unknown band count as land in Natural Earth, so Lake Victoria is inside.
+- **Himawari-8 is re-binned, not hour-averaged at source.** Its hourly rows are instantaneous
+  samples; openepw makes each irradiance hour the mean of the samples at its start and end
+  (checked against 10-minute data at Singapore 2018: annual GHI within 0.1%, hourly RMSE 9.5%).
 - No weather observations or EPW files are included; download them from each provider
   under its own terms.
 
@@ -152,3 +174,4 @@ sources, 73,405 products, 106,991 sites, 99,583 entries and 61 reviews are ident
 | 2026.10.13 | 2026-10-13 | OneBuilding TMYx files of every WMO region, NSRDB probes at Singapore, Nairobi and London with Himawari, Meteosat and IODC coverage masks, the ERA5-Land land mask. |
 | 2026.10.13.1 | 2026-10-13 | PVGIS 5.3 TMY: SARAH3 or ERA5 radiation by location, a documented 2005–2023 period, the domain mask, and probes at Ithaca and Lake Victoria. |
 | 2026.10.13.2 | 2026-10-13 | NSRDB: ten edge probes, documented years for each coverage mask, Polar products listed. ERA5-Land: the mask of points with values replaces the land-fraction mask. |
+| 2026.10.27 | 2026-10-27 | OneBuilding national and special typical-year families (17), NSRDB Himawari-8, PVGIS coastal refinement with Natural Earth, ERA5 documentation at the poles. |

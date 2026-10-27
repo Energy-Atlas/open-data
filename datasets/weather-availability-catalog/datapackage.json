@@ -1,7 +1,7 @@
 {
   "profile": "tabular-data-package",
   "name": "weather-availability-catalog",
-  "version": "2026.10.13.2",
+  "version": "2026.10.27",
   "title": "Weather availability catalog",
   "description": "Which weather products (station records, typical-year files, reanalysis, climate projections) are available where and for which years, with the evidence each statement rests on. Metadata only: no weather data. Exported from the openepw availability catalog.",
   "homepage": "https://github.com/Energy-Atlas/open-data/tree/main/datasets/weather-availability-catalog",
@@ -18,7 +18,7 @@
     },
     {
       "name": "other-attribution",
-      "title": "Per-source terms; see README.md (NOAA, NSRDB, PVGIS, OneBuilding)"
+      "title": "Per-source terms; see README.md (NOAA, NSRDB, PVGIS, OneBuilding, Natural Earth)"
     }
   ],
   "sources": [
@@ -57,6 +57,10 @@
     {
       "title": "OEDI 5974: Dynamically downscaled hourly future weather data (Argonne), doi:10.25984/2202668",
       "path": "https://data.openei.org/submissions/5974"
+    },
+    {
+      "title": "Natural Earth 1:10m land polygons (public domain), for PVGIS coastal points",
+      "path": "https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-land/"
     }
   ],
   "catalog_schema_version": "1",
@@ -68,8 +72,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 17749,
-      "hash": "sha256:9e87433fcdb674c836114d1141a1bbd9e2ddf665ea29b7ecef7f42497931740f",
+      "bytes": 26114,
+      "hash": "sha256:d583abc3d42371c530f1bea2aa316399bcf4fa72f76afcd9cc9897f307276865",
       "schema": {
         "fields": [
           {
@@ -149,8 +153,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 78583,
-      "hash": "sha256:569366e49df1e4cfab62c3a842cca5352a40e13409d9bb2fbbf5bbfc483dc9fd",
+      "bytes": 78483,
+      "hash": "sha256:8c69c958531bfa4d413fd5feee176fa894f036ebbae846096ee435476bb8a181",
       "schema": {
         "fields": [
           {
@@ -1541,8 +1545,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 5802,
-      "hash": "sha256:b3548788c253deee5e92d6c875d7e23d199106adac62b710397662f8b3979cb0",
+      "bytes": 5913,
+      "hash": "sha256:aeff6fa12e2a32bce68446908fb4e13740894573ae95bb25838a632443e2684b",
       "schema": {
         "fields": [
           {
@@ -1772,8 +1776,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 38067,
-      "hash": "sha256:bf209e42d1bf6f573648d06c2098345bf99a2eeb8d57a43e1eafc58bcf564a5b",
+      "bytes": 38222,
+      "hash": "sha256:127be0e8bb74df3a71cfd6a1f712170d5d743cd3f3e180f642549a21227ac468",
       "schema": {
         "fields": [
           {
@@ -2345,8 +2349,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 31161358,
-      "hash": "sha256:35be104bc6e7e8304d25a9738b728bcdbb42a49946d158f69a5e46943f968524",
+      "bytes": 32701560,
+      "hash": "sha256:74f69a437a79d699965f05eb777432560f50fddd481392b2bc75083666f96046",
       "schema": {
         "fields": [
           {
@@ -2485,8 +2489,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 12643707,
-      "hash": "sha256:6455efb8f45df5a190c88d91cac182adb81c7032f6c3f2923dec2993bfdb7421",
+      "bytes": 13241211,
+      "hash": "sha256:2c7130b1ad1a5915eb9298b62e069e34c9fd5223b31d0d983475241990f21b7b",
       "schema": {
         "fields": [
           {
@@ -2576,8 +2580,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 17393216,
-      "hash": "sha256:1cb91f969a29f6fc7a4fdf1cf6d680c8b0cbcb91d6153b769d088d7aefef0c62",
+      "bytes": 18219579,
+      "hash": "sha256:16a22ab14ff266ecbfc7a09b2448e4d1f58f9fd93f54a4bcd15b20212422ccb1",
       "schema": {
         "fields": [
           {
@@ -3149,8 +3153,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 761,
-      "hash": "sha256:e796f9692cff0a25ea77aaccb8dc0a1cd8f3a62b56605c49fbd28cda3e6b7a9b",
+      "bytes": 802,
+      "hash": "sha256:d3bd6ad0098bdc4b9710ea0d7e95393a5d635e909dddb9bb49e62f4883d59485",
       "schema": {
         "fields": [
           {
@@ -3380,8 +3384,8 @@
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 1446,
-      "hash": "sha256:d6c13fb7ec1b252cdfa4cc634106f77102d3e0513f68914c628758c65fee390e",
+      "bytes": 2108,
+      "hash": "sha256:9d648b7f584f6caa70b3ba46d2f993b49478f6f7a6a74932d8048798573f96cc",
       "schema": {
         "fields": [
           {
@@ -3565,8 +3569,8 @@
       "path": "data/footprints/nsrdb/himawari7/2015/manifest.json",
       "format": "json",
       "mediatype": "application/json",
-      "bytes": 1582,
-      "hash": "sha256:8a217b684d9b8da8fbdb75ed876d7700ed279ab6c3974c2e60d22006b4940a8c"
+      "bytes": 1609,
+      "hash": "sha256:64096de67c19804c6462899e650438f9d41d45b8a66a573cca98cb8cc9952f12"
     },
     {
       "name": "data-footprints-nsrdb-himawari7-2015-mask.json",
@@ -3629,16 +3633,16 @@
       "path": "data/footprints/pvgis/tmy-v5_3/domain/manifest.json",
       "format": "json",
       "mediatype": "application/json",
-      "bytes": 2130,
-      "hash": "sha256:8c4d21213bd87b3e215f6f280c81cfcdc9590a01a710735a96eed5601a8bbb52"
+      "bytes": 3499,
+      "hash": "sha256:18541a057e6fbc0dc19ed0300a0488e14b24bc213ce5caf0995d09c523ceb2c9"
     },
     {
       "name": "data-footprints-pvgis-tmy-v5_3-domain-mask.json",
       "path": "data/footprints/pvgis/tmy-v5_3/domain/mask.json",
       "format": "json",
       "mediatype": "application/json",
-      "bytes": 703422,
-      "hash": "sha256:78c3ecadd04d3a70a68938be12e864fc162307b628b7833ff4ac657808a85703"
+      "bytes": 2518711,
+      "hash": "sha256:ff724b1bea610d2098ad3f1288f5b3f94c46d470a5d0b46f50e7d8b9c103d310"
     }
   ]
 }

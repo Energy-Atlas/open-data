@@ -5,7 +5,8 @@
       "coordinate_count": 2170782,
       "gates": [
         "nsrdb:himawari7",
-        "nsrdb:himawari-tmy"
+        "nsrdb:himawari-tmy",
+        "nsrdb:himawari"
       ],
       "grid_identity": {
         "also_gates_because": "himawari/himawari_tmy-2020.h5 has the same meta table: 2,170,782 rows of 119 bytes in 130 chunks of 16,806 rows, and 5 chunks spread over it are byte-identical to this table",
